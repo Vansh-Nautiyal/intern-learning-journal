@@ -1,0 +1,10 @@
+Hi, I am Vansh Nautiyal, a second-year B.Tech Computer Science student at UPES, Dehradun, 
+specializing in Artificial Intelligence and Machine Learning. 
+I am passionate about exploring innovative technologies and building intelligent systems that solve real-world problems.
+ My interest lies in developing AI and ML projects that allow me to apply theoretical concepts to practical applications.
+
+I enjoy learning about data-driven technologies, problem-solving, and creating 
+impactful solutions through programming and research. Through academic projects and 
+continuous learning, I aim to strengthen my technical skills and gain hands-on experience 
+in the field of AI. I am always eager to explore new opportunities, collaborate with like-minded 
+individuals, and contribute to meaningful technological advancements.
