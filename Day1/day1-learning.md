@@ -28,10 +28,13 @@ Today, I learned how to set up and use development tools such as Visual Studio C
 * `git log` → View commit history
 
 ## VS Code Setup 
-I set up VS code and downloaded the following extensions to enhace workflow - 
+I set up VS code and downloaded the following extensions to enhace workflow -
 
 * `Prettier` → Automatically formats code in a consistent style, improving readability and saving development time.
 * `Live Server` → Launches a local development server with live reload, allowing instant browser updates while editing webpages.
 * `GitLens` → Enhances Git capabilities by showing commit history, code authorship, and change tracking directly inside the editor.
 * `Auto Rename Tag` → Automatically renames paired HTML/XML tags together, reducing manual editing error and speeding up coding.
-![Auto Rename Tag]("C:\Users\hp\Pictures\Screenshots\ART extension.png")
+![Auto Rename Tag]("intern-learning-journal\Day1\screenshots\ART extension.png")
+![GitLens]("intern-learning-journal\Day1\screenshots\GitLens.png")
+![LiveServer]("intern-learning-journal\Day1\screenshots\LiveServer.png")
+![Prettier]("intern-learning-journal\Day1\screenshots\Prettier.png")
