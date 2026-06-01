@@ -36,7 +36,7 @@ Today, I learned how to set up and use development tools such as Visual Studio C
 
 ---
 
-# Understanding the Difference Between `git fetch` and `git pull`
+## Understanding the Difference Between `git fetch` and `git pull`
 
 `git fetch` only downloads the latest changes from the remote repository and keeps them separate from the current working branch. It allows developers to review changes before applying them.
 
@@ -44,7 +44,7 @@ Today, I learned how to set up and use development tools such as Visual Studio C
 
 ---
 
-# Local vs Remote Repositories
+## Local vs Remote Repositories
 
 A **local repository** is the version of the project stored on a developer’s own computer, where changes are made and tested. It allows offline work and personal version control.
 
@@ -52,7 +52,7 @@ A **remote repository** is hosted on platforms like GitHub or GitLab and is shar
 
 ---
 
-# What is `origin` and Tracking Branches
+## What is `origin` and Tracking Branches
 
 `origin` is the default name given to the remote repository when a project is cloned from GitHub or another hosting platform. It acts as a shortcut reference to the remote repository URL.
 
