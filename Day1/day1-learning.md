@@ -1,4 +1,4 @@
-# Day 1 Learning
+# Day 1 : Git, GitHub and VS Code Setup
 
 ## What is Git?
 
