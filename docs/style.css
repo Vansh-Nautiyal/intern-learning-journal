@@ -20,6 +20,7 @@ body{
     font-size: 18px;
     background-color: rgb(2, 1, 20);
     color: rgb(233, 231, 231);
+
 }
 section{
     padding-left: 60px;
@@ -31,9 +32,21 @@ section{
 #about{
     margin-top: 20px;
     padding-top: 20px;
-    padding-left: 80px;
-    padding-right: 80px;
+    margin-left: 120px;
+    margin-right: 120px;
+    padding-left: 100px;
+    padding-right: 100px;
 }
+
+#heroSection{
+    display: flex;
+    justify-content: center;
+}
+#heroSection img{
+    height:250px;
+    width: 250px;
+}
+
 #projects h2{
     padding-top: 40px;
 }
@@ -82,6 +95,11 @@ button{
 
 #contact{
     background-color: rgb(34, 44, 52);
-    margin-bottom: 0px;
-    padding:10px;
+    padding-top: 10px;
+    margin-bottom: 0;
+}
+
+.experienceCard{
+    padding-left: 100px;
+    padding-right: 100px;
 }
