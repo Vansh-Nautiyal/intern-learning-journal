@@ -103,3 +103,62 @@ button{
     padding-left: 100px;
     padding-right: 100px;
 }
+
+/*Responsive Design*/
+@media (max-width: 768px){
+
+    nav{
+        flex-direction: column;
+        text-align: center;
+    }
+
+    #title{
+        padding-left: 0px;
+    }
+
+    #linkbox{
+        margin-top: 10px;
+    }
+
+    #heroSection{
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    #about{
+        margin-left: 20px;
+        margin-right: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    #projects{
+        padding-left: 10px;
+        padding-right: 10px;
+        margin: 20px;
+    }
+
+    #row1{
+        grid-template-columns: 1fr;
+    }
+
+    #row2{
+        grid-template-columns: 1fr;
+    }
+
+    .experienceCard{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    section{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    #heroSection img{
+        margin-top: 20px;
+    }
+
+}
