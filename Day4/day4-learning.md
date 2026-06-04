@@ -337,8 +337,6 @@ false
 
 `===` compares both value and data type.
 
----
-
 ## Logical Operators
 
 Logical operators combine multiple conditions.
