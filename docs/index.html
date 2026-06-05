@@ -13,15 +13,12 @@
         <h1>Calculator App</h1>
     </header>
 
-    <div id = "contentArea">
-        <p>
-            First Number : 
-        </p>
-        <input id = "num1" type="text" placeholder = "Enter a value">
-        <p>
-            Second Number : 
-        </p>
-        <input id = "num2" type="text" placeholder = "Enter a value">
+    <section id = "contentArea">
+        <label for="num1">First Number</label>
+        <input id = "num1" type="number" placeholder = "Enter a value">
+        <br>
+        <label for="num2">Second Number</label>
+        <input id = "num2" type="number" placeholder = "Enter a value" maxlength=10>
 
         <h3 style="text-align: center;">Choose Operation </h3>
         <div id="operations">
@@ -37,7 +34,7 @@
                 Results Will be Shown here
             </p>
         </div>
-    </div>
+    </section>
 
 </body>
 <script src="script.js"></script>
