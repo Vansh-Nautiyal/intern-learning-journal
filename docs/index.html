@@ -9,27 +9,28 @@
 </head>
 
 <body>
-    <header style="margin-top: 50px;">
+    <header>
         <h1>Calculator App</h1>
+        <h3>A simple Calculator built using HTML, CSS and JavaScript</h3>
+        <button id = "themeBtn">🌙 Dark Mode</button>
     </header>
 
     <section id = "contentArea">
         <label for="num1">First Number</label>
         <input id = "num1" type="number" placeholder = "Enter a value">
-        <br>
         <label for="num2">Second Number</label>
         <input id = "num2" type="number" placeholder = "Enter a value" maxlength=10>
 
         <h3 style="text-align: center;">Choose Operation </h3>
         <div id="operations">
-            <button class = "opBtn" id = "addBtn">Add (+)</button>
-            <button class = "opBtn" id = "subBtn">Subtract(-)</button>
-            <button class = "opBtn" id = "mulBtn">Multiply(*)</button>
-            <button class = "opBtn" id = "divBtn">Divide(/)</button>
+            <button class = "opBtn" id = "addBtn">Addition (+)</button>
+            <button class = "opBtn" id = "subBtn">Subtraction (-)</button>
+            <button class = "opBtn" id = "mulBtn">Multiplication(*)</button>
+            <button class = "opBtn" id = "divBtn">Division(/)</button>
         </div>
 
         <div id = "outputBox">
-            <h3><u>Results</u></h3>
+            <h2><u>Results</u></h2>
             <p id = "results">
                 Results Will be Shown here
             </p>
