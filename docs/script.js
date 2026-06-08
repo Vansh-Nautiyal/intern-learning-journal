@@ -75,9 +75,9 @@ const themeBtn = document.querySelector("#themeBtn");
 themeBtn.addEventListener("click",()=>{
     document.body.classList.toggle("dark-theme");
     if (document.body.classList.contains("dark-theme")){
-        themeBtn.innerText = "☀️ Light Mode";
+        themeBtn.innerText = "Light Mode";
     }
     else{
-        themeBtn.innerText = "🌙 Dark Mode";
+        themeBtn.innerText = "Dark Mode";
     }
 })
