@@ -1,83 +1,148 @@
-function  getInput(){
+function getInput() {
     let inp1 = document.getElementById("num1").value;
     let inp2 = document.getElementById("num2").value;
 
-    if (inp1 === "" || inp2 === ""){
-        resultArea.innerText= "Please fill both the values !!";
+    if (inp1 === "" || inp2 === "") {
+        resultArea.innerText = "Please fill both the values !!";
     }
-    else{
+    else {
         return {
-            num1 : Number(inp1),
-            num2 : Number(inp2)
-        }
+            num1: Number(inp1),
+            num2: Number(inp2)
+        };
     }
+
 }
+
+function showHistory(calculation) {
+    let li = document.createElement("li");
+    li.innerText = calculation;
+    historyList.prepend(li);
+}
+
 const resultArea = document.getElementById("results");
 const addBtn = document.getElementById("addBtn");
 const subBtn = document.getElementById("subBtn");
-const mulBtn = document.getElementById("mulBtn")
+const mulBtn = document.getElementById("mulBtn");
 const divBtn = document.getElementById("divBtn");
 
+const historyList = document.querySelector("#history");
+
+let history = [];
+let result = "";
+
+/* Load old history from Local Storage */
+const savedHistory = localStorage.getItem("history");
+if (savedHistory) {
+    history = JSON.parse(savedHistory);
+    for (let i = 0; i <history.length; i++) {
+        showHistory(history[i]);
+    }
+
+}
+
+/* Addition */
 addBtn.addEventListener("click", function () {
     const values = getInput();
-    if (values){
+    if (values) {
         let num1 = values.num1;
         let num2 = values.num2;
-        resultArea.innerText = `${num1} + ${num2} = ${num1 + num2}`;
+        result = `${num1} + ${num2} = ${num1 + num2}`;
+
+        resultArea.innerText = result;
+
+        history.push(result);
+        localStorage.setItem(
+            "history",
+            JSON.stringify(history)
+        );
+        showHistory(result);
     }
-    else{
-        return;
-    }
+
 });
+
+/* Multiplication */
 
 mulBtn.addEventListener("click", function () {
     const values = getInput();
-    if (values){
+    if (values) {
         let num1 = values.num1;
         let num2 = values.num2;
-        resultArea.innerText = `${num1} * ${num2} = ${num1 * num2}`;
+        result = `${num1} * ${num2} = ${num1 * num2}`;
+
+        resultArea.innerText = result;
+
+        history.push(result);
+        localStorage.setItem(
+            "history",
+            JSON.stringify(history)
+        );
+        showHistory(result);
     }
-    else{
-        return;
-    }
+
 });
 
+/* Subtraction */
 subBtn.addEventListener("click", function () {
     const values = getInput();
-    if (values){
+    if (values) {
         let num1 = values.num1;
         let num2 = values.num2;
-        resultArea.innerText = `${num1} - ${num2} = ${num1 - num2}`;
+        result = `${num1} - ${num2} = ${num1 - num2}`;
+
+        resultArea.innerText = result;
+
+        history.push(result);
+        localStorage.setItem(
+            "history",
+            JSON.stringify(history)
+        );
+        showHistory(result);
     }
-    else{
-        return;
-    }
+
 });
+
+/* Division */
 
 divBtn.addEventListener("click", function () {
     const values = getInput();
-    if (values){
+    if (values) {
         let num1 = values.num1;
         let num2 = values.num2;
         if (num2 != 0) {
-            resultArea.innerText = `${num1} / ${num2} = ${num1 / num2}`;
+            result = `${num1} / ${num2} = ${num1 / num2}`;
+            resultArea.innerText = result;
+
+            history.push(result);
+            localStorage.setItem(
+                "history",
+                JSON.stringify(history)
+            );
+
+            showHistory(result);
         }
-        else{
-            resultArea.innerText = `Error !! Division by Zero !!`;
+        else {
+            resultArea.innerText = "Error !! Division by Zero !!";
         }
     }
-    else{
-        return;
+
+});
+
+/* Theme Toggle */
+const themeBtn = document.querySelector("#themeBtn");
+themeBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark-theme");
+    if (document.body.classList.contains("dark-theme")) {
+        themeBtn.innerText = "Light Mode";
+    }
+    else {
+        themeBtn.innerText = "Dark Mode";
     }
 });
 
-const themeBtn = document.querySelector("#themeBtn");
-themeBtn.addEventListener("click",()=>{
-    document.body.classList.toggle("dark-theme");
-    if (document.body.classList.contains("dark-theme")){
-        themeBtn.innerText = "Light Mode";
-    }
-    else{
-        themeBtn.innerText = "Dark Mode";
-    }
+const clearHistoryBtn = document.querySelector("#clearHistory");
+clearHistoryBtn.addEventListener("click",()=>{
+    history = [];
+    historyList.innerHTML = "";
+    localStorage.removeItem("history");
 })

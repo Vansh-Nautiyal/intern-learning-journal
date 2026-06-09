@@ -12,31 +12,42 @@
     <header>
         <h1>Calculator App</h1>
         <h3>A simple Calculator built using HTML, CSS and JavaScript</h3>
-        <button id = "themeBtn">Dark Mode</button>
+        <button id="themeBtn">Dark Mode</button>
+        <button id = "clearHistory">Clear History</button>
     </header>
 
-    <section id = "contentArea">
-        <label for="num1">First Number</label>
-        <input id = "num1" type="number" placeholder = "Enter a value">
-        <label for="num2">Second Number</label>
-        <input id = "num2" type="number" placeholder = "Enter a value" maxlength=10>
+    <section id="contentBox">
+        <section id="mainContent">
+            <label for="num1">First Number</label>
+            <input id="num1" type="number" placeholder="Enter a value">
+            <label for="num2">Second Number</label>
+            <input id="num2" type="number" placeholder="Enter a value" maxlength=10>
 
-        <h3 style="text-align: center;">Choose Operation </h3>
-        <div id="operations">
-            <button class = "opBtn" id = "addBtn">Addition (+)</button>
-            <button class = "opBtn" id = "subBtn">Subtraction (-)</button>
-            <button class = "opBtn" id = "mulBtn">Multiplication(*)</button>
-            <button class = "opBtn" id = "divBtn">Division(/)</button>
-        </div>
+            <h3 style="text-align: center;">Choose Operation </h3>
+            <div id="operations">
+                <button class="opBtn" id="addBtn">Addition (+)</button>
+                <button class="opBtn" id="subBtn">Subtraction (-)</button>
+                <button class="opBtn" id="mulBtn">Multiplication(*)</button>
+                <button class="opBtn" id="divBtn">Division(/)</button>
+            </div>
 
-        <div id = "outputBox">
-            <h2><u>Results</u></h2>
-            <p id = "results">
-                Results Will be Shown here
-            </p>
-        </div>
+            <div id="outputBox">
+                <h2><u>Results</u></h2>
+                <p id="results">
+                    Results Will be Shown here
+                </p>
+            </div>
+        </section>
+        <section id="historySection">
+            <div id = "historyBox">
+                <h2>History</h2>
+                <ul id = "history" ></ul>
+            </div>
+        </section>
     </section>
+    
 
 </body>
 <script src="script.js"></script>
+
 </html>
