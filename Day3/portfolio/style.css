@@ -1,0 +1,164 @@
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px 10px;
+    background-color: rgb(1, 11, 68);
+    color: aliceblue;
+}
+.links{
+    text-decoration: none;
+    padding: 20px;
+    color: aliceblue;
+    font-size: 18px;
+}
+
+body{
+    margin: 0;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    background-color: rgb(2, 1, 20);
+    color: rgb(233, 231, 231);
+
+}
+section{
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+}
+
+#about{
+    margin-top: 20px;
+    padding-top: 20px;
+    margin-left: 120px;
+    margin-right: 120px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+#heroSection{
+    display: flex;
+    justify-content: center;
+}
+#heroSection img{
+    height:250px;
+    width: 250px;
+}
+
+#projects h2{
+    padding-top: 40px;
+}
+
+button{
+    background-color: rgb(32, 73, 94);
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 10px;
+    border-radius: 15px;
+    border: none;
+    color: aliceblue;
+}
+
+#projects{
+    padding-left: 120px;
+    padding-right: 120px;
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+}
+
+#row1 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    gap: 20px;
+}
+
+#row2{
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap:20px;
+}
+
+.projectCard{
+    border: 4px solid rgb(48, 106, 147);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    background-color: rgb(31, 58, 73);
+}
+
+#contact{
+    background-color: rgb(34, 44, 52);
+    padding-top: 10px;
+    margin-bottom: 0;
+}
+
+.experienceCard{
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+/*Responsive Design*/
+@media (max-width: 768px){
+
+    nav{
+        flex-direction: column;
+        text-align: center;
+    }
+
+    #title{
+        padding-left: 0px;
+    }
+
+    #linkbox{
+        margin-top: 10px;
+    }
+
+    #heroSection{
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    #about{
+        margin-left: 20px;
+        margin-right: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    #projects{
+        padding-left: 10px;
+        padding-right: 10px;
+        margin: 20px;
+    }
+
+    #row1{
+        grid-template-columns: 1fr;
+    }
+
+    #row2{
+        grid-template-columns: 1fr;
+    }
+
+    .experienceCard{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    section{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    #heroSection img{
+        margin-top: 20px;
+    }
+
+}
