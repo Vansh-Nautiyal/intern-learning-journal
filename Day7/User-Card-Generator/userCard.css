@@ -1,0 +1,32 @@
+body {
+    text-align: center;
+    padding: 30px;
+    background-color: #f4f4f4;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.card {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgb(236, 235, 235);
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.card p {
+    margin: 8px 0;
+}
