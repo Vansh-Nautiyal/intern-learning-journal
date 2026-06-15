@@ -1,0 +1,108 @@
+/* Page */
+body {
+  margin: 0;
+  background-color: #f4f4f4;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  margin-bottom: 5px;
+}
+
+header h3 {
+  color: #666;
+  margin-bottom: 5px;
+}
+
+/* Main App Container */
+.mainContainer {
+  width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+/* Search Bar */
+.filter-task input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* Add Task Form */
+form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+form input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+form button {
+  padding: 10px 15px;
+}
+
+/* Task List */
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Individual Task Card */
+.task-card {
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Task Text */
+.task-title {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* Buttons Section */
+.task-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Buttons */
+button {
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-btn {
+  background-color: orange;
+  color: white;
+}
+
+.complete-btn {
+  background-color: green;
+  color: white;
+}
+
+.save-btn {
+  background-color: royalblue;
+  color: white;
+}
