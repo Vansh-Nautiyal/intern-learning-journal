@@ -5,56 +5,12 @@ body {
   background-color: black;
   color: white;
 }
-.navbar {
-  display: flex;
-  justify-content: space-around;
-}
-.navbar h1{
-    color: red;
-    font-size: 2.5rem;
-}
-
-.navbar button {
-  margin: 20px;
-  border: 1px solid rgb(179, 177, 177);
-  color: white;
-  background-color: rgb(30, 30, 30);
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-
-.navbar .sign-in{
-    background-color: rgb(233, 5, 5);
-}
-
 .hero-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url("./assets/hero-section.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-}
-
-.hero-section {
-  text-align: center;
-  padding: 5%;
-}
-
-.hero-section input {
-  height: 30px;
-  width: 30%;
-  padding-left: 15px;
-}
-
-.hero-section button {
-  height: 35px;
-  background-color: red;
-  color: white;
-  border: none;
-  margin: 5px;
-  padding: 10px;
 }
 
 .info-box {
@@ -67,38 +23,22 @@ body {
   padding: 4% 20% 4% 20%;
 }
 
+.info-box h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
 .info-box img {
   width: 400px;
   height: 200px;
   border-radius: 10px;
 }
 
-.faq-box {
-  text-align: center;
-  border-top: 4px solid rgb(70, 70, 70);
-  border-bottom: 2px solid rgb(70, 70, 70);
-  padding-top: 5%;
-  padding-bottom: 5%;
-}
-
-.faq-box input {
-  height: 30px;
-  width: 30%;
-  padding-left: 15px;
-}
-
-.faq-box button {
-  height: 35px;
-  background-color: red;
-  color: white;
-  border: none;
-  margin: 5px;
-  padding: 10px;
-}
-
 .accordion {
   width: 50%;
   margin: auto;
+  margin-bottom : 20px;
 }
 .accordion button {
   width: 100%;
