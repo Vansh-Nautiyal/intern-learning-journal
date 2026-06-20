@@ -7,10 +7,6 @@ function SignIn() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log(email);
-    console.log(password);
-
     alert("Sign In Clicked");
   };
 
@@ -59,11 +55,6 @@ function SignIn() {
               </div>
             </form>
 
-            <div className="mb-4 flex items-center gap-3 text-sm text-[rgb(115,115,115)]">
-              <span className="text-2xl font-bold text-[#3b5998]">f</span>
-              <span>Login with Facebook</span>
-            </div>
-
             <p className="mb-4 text-[rgb(115,115,115)]">
               New to Netflix?{" "}
               <Link to="/" className="font-bold text-white no-underline">
@@ -91,7 +82,7 @@ function SignIn() {
             <span>Cookie Preferences</span>
             <span>Corporate Information</span>
           </div>
-          <button className="border border-[rgb(80,80,80)] bg-black/30 px-4 py-3 text-sm text-[rgb(180,180,180)]">
+          <button className="border border-[rgb(80,80,80)] bg-black/30 px-3 py-2 text-sm text-[rgb(180,180,180)]">
             English
           </button>
         </footer>
