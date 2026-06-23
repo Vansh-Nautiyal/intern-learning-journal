@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
-    <nav className="flex justify-around">
+    <nav className="flex justify-between">
       <Link to="/" className="no-underline">
         <h1 className="text-[2.5rem] text-[red] font-bold">NETFLIX</h1>
       </Link>
@@ -22,3 +22,4 @@ function Navbar() {
 }
 
 export default Navbar;
+

@@ -1,0 +1,17 @@
+body{
+  text-align: center;
+  margin: auto;
+}
+
+.accordion{
+  width: 50%;
+  margin: auto;
+  border: 2px solid black;
+}
+
+.acc-item button{
+  width: 100%;
+  height : 60px;
+  background-color: rgb(75, 74, 74);
+  color: white;
+}
