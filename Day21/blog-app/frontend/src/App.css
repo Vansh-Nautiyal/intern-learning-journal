@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+.navbar{
+  background-color: rgb(14, 13, 13);
+  color: antiquewhite;
+  padding: 2%;
+}
+
+
+
+.hero-section .description{
+  padding:20px;
+}
+
+.hero-section .description button{
+  margin: 20px;
+  min-width: 100px;
+  min-height: 30px;
+  border-radius: 8px;
+  border: none;
+  background-color: rgb(28, 28, 28);
+  color: antiquewhite;
+}
+.content-box{
+  text-align: center;
+}
+
+
+.blog{
+  border: 2px solid black;
+  max-width: 60%;
+  margin-left : auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.menu{
+  display: flex;
+  justify-content:center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.menu-card{
+  border: 4px solid rgb(96, 95, 95);
+  border-radius: 20px;
+  background-color: rgb(230, 230, 230);
+  padding: 2rem;
+  width: 200px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.menu-card button{
+  padding: 0.7rem;
+  border-radius: 15px;
+  background-color: rgb(26, 26, 26);
+  border: none;
+  color: bisque;
+}
+
+.menu-card img{
+  width: 100px;
+  height: 100px;
+}
