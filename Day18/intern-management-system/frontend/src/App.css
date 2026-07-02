@@ -1,0 +1,44 @@
+.title{
+  text-align: center;
+}
+
+.input-form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.input-form input{
+  min-height: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-left: 10px;
+}
+
+.input-form button{
+  padding: 8px;
+  width: 100px;
+  background-color: rgb(147, 246, 147);
+  border: 2px solid rgb(64, 241, 64);
+  border-radius: 20px;
+}
+
+.display-interns{
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  padding: 20px;
+}
+
+.display-intern-button{
+  font-size: 1.1rem;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.intern-list{
+  text-align: center;
+  padding: 10px;
+}
