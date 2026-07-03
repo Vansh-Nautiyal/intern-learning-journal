@@ -1,7 +1,24 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 function Navbar() {
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem("theme") || "dark";
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((currentTheme) => (currentTheme === "light" ? "dark" : "light"));
+  };
+
+  const isDarkTheme = theme === "dark";
+
   return (
-    <div className="navbar sticky top-0 z-50  bg-base-100 shadow-sm p-4">
+    <div className="app-navbar navbar sticky top-0 z-50 bg-base-100/80 backdrop-blur-md border-b px-6 py-5">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
@@ -39,11 +56,13 @@ function Navbar() {
           </ul>
         </div>
       </div>
+
       <div className="navbar-center">
-        <Link to="/" className="text-4xl font-bold">
+        <Link to="/" className="text-3xl font-semibold tracking-tight">
           Blog App
         </Link>
       </div>
+
       <div className="navbar-end">
         <button className="btn btn-ghost btn-circle">
           <svg
@@ -81,6 +100,46 @@ function Navbar() {
             </svg>
             <span className="badge badge-xs badge-primary indicator-item"></span>
           </div>
+        </button>
+
+        <button
+          type="button"
+          className="theme-toggle btn btn-circle"
+          onClick={toggleTheme}
+          aria-label={`Switch to ${isDarkTheme ? "light" : "dark"} theme`}
+          title={`Switch to ${isDarkTheme ? "light" : "dark"} theme`}
+        >
+          {isDarkTheme ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.36 6.36-1.42-1.42M7.05 7.05 5.64 5.64m12.72 0-1.42 1.41M7.05 16.95l-1.41 1.41M12 8a4 4 0 100 8 4 4 0 000-8z"
+              />
+            </svg>
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"
+              />
+            </svg>
+          )}
         </button>
       </div>
     </div>

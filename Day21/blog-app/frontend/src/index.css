@@ -1,2 +1,151 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+@plugin "daisyui/theme" {
+  name: "light";
+  --color-base-100: #ffffff;
+  --color-base-200: #f4f7fb;
+  --color-base-300: #d7dee8;
+  --color-base-content: #172033;
+  --color-primary: #2563eb;
+  --color-primary-content: #ffffff;
+  --color-secondary: #0f766e;
+  --color-secondary-content: #ffffff;
+  --color-accent: #f59e0b;
+  --color-accent-content: #1f2937;
+  --color-neutral: #172033;
+  --color-neutral-content: #f8fafc;
+}
+
+@plugin "daisyui/theme" {
+  name: "dark";
+  default: true;
+  --color-base-100: #111827;
+  --color-base-200: #0b1120;
+  --color-base-300: #253044;
+  --color-base-content: #f8fafc;
+  --color-primary: #60a5fa;
+  --color-primary-content: #07111f;
+  --color-secondary: #2dd4bf;
+  --color-secondary-content: #042f2e;
+  --color-accent: #fbbf24;
+  --color-accent-content: #1f2937;
+  --color-neutral: #e5e7eb;
+  --color-neutral-content: #111827;
+}
+
+:root {
+  color-scheme: dark;
+  --app-bg: #0b1120;
+  --app-text: #f8fafc;
+  --app-muted: #cbd5e1;
+  --app-hero-bg: #0b1120;
+  --app-hero-panel: #111827;
+  --app-hero-text: #f8fafc;
+  --app-hero-muted: #cbd5e1;
+  --navbar-border: rgb(255 255 255 / 0.1);
+  --theme-toggle-bg: rgb(255 255 255 / 0.08);
+  --theme-toggle-border: rgb(255 255 255 / 0.14);
+  --theme-toggle-hover-bg: rgb(255 255 255 / 0.14);
+  --theme-toggle-shadow: 0 12px 28px rgb(0 0 0 / 0.24);
+  --blog-card-bg: rgb(255 255 255 / 0.05);
+  --blog-card-border: rgb(255 255 255 / 0.1);
+  --blog-card-hover-border: rgb(255 255 255 / 0.2);
+  --blog-card-shadow: 0 18px 40px rgb(0 0 0 / 0.3);
+  --blog-card-text-bg: rgb(255 255 255 / 0.06);
+  --blog-card-text-border: rgb(255 255 255 / 0.08);
+  --blog-card-excerpt: #cbd5e1;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --app-bg: #f4f7fb;
+  --app-text: #172033;
+  --app-muted: #526070;
+  --app-hero-bg: #e8eef7;
+  --app-hero-panel: #ffffff;
+  --app-hero-text: #172033;
+  --app-hero-muted: #526070;
+  --navbar-border: rgb(23 32 51 / 0.1);
+  --theme-toggle-bg: rgb(255 255 255 / 0.72);
+  --theme-toggle-border: rgb(23 32 51 / 0.14);
+  --theme-toggle-hover-bg: rgb(255 255 255 / 0.95);
+  --theme-toggle-shadow: 0 12px 28px rgb(23 32 51 / 0.12);
+  --blog-card-bg: #abe6fb86;
+  --blog-card-border: rgba(2, 35, 111, 0.3);
+  --blog-card-hover-border: rgb(15 23 42 / 0.48);
+  --blog-card-shadow: 0 18px 40px rgb(15 23 42 / 0.14);
+  --blog-card-text-bg: #edf2f7;
+  --blog-card-text-border: rgb(15 23 42 / 0.1);
+  --blog-card-excerpt: #212224;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--app-bg);
+  color: var(--app-text);
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+.app-navbar {
+  border-color: var(--navbar-border);
+}
+
+.theme-toggle {
+  min-height: 3rem;
+  height: 3rem;
+  width: 3rem;
+  border: 1px solid var(--theme-toggle-border);
+  background: var(--theme-toggle-bg);
+  color: var(--app-text);
+  box-shadow: var(--theme-toggle-shadow);
+  transition: background-color 180ms ease, border-color 180ms ease,
+    box-shadow 180ms ease, transform 180ms ease;
+}
+
+.theme-toggle:hover {
+  background: var(--theme-toggle-hover-bg);
+  border-color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+.blog-card {
+  border: 1px solid var(--blog-card-border);
+  background: var(--blog-card-bg);
+}
+
+.blog-card:hover {
+  border-color: var(--blog-card-hover-border);
+  box-shadow: var(--blog-card-shadow);
+}
+
+.blog-card-text {
+  border: 1px solid var(--blog-card-text-border);
+  background: var(--blog-card-text-bg);
+}
+
+.blog-card-excerpt {
+  color: var(--blog-card-excerpt);
+}
+
+.hero-shell {
+  background: var(--app-hero-bg);
+  color: var(--app-hero-text);
+}
+
+.hero-panel {
+  background: var(--app-hero-panel);
+  color: var(--app-hero-text);
+}
+
+.hero-description {
+  color: var(--app-hero-muted);
+}
+
+.hero-link {
+  color: var(--app-hero-text);
+}
+
+.hero-link:hover {
+  color: var(--color-primary);
+}

@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 export default function HeroSection() {
   return (
-    <div className="bg-gray-900">
+    <div className="hero-shell">
       <div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
-        <div className="relative isolate overflow-hidden bg-gray-800 px-6 pt-16 after:pointer-events-none after:absolute after:inset-0 after:inset-ring after:inset-ring-white/10 sm:rounded-3xl sm:px-16 after:sm:rounded-3xl md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
+        <div className="hero-panel relative isolate overflow-hidden px-6 pt-16 after:pointer-events-none after:absolute after:inset-0 after:inset-ring after:inset-ring-white/10 sm:rounded-3xl sm:px-16 after:sm:rounded-3xl md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
           <svg
             viewBox="0 0 1024 1024"
             aria-hidden="true"
@@ -26,11 +26,11 @@ export default function HeroSection() {
           </svg>
 
           <div className="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
-            <h1 className="text-3xl font-semibold tracking-tight text-balance text-white sm:text-5xl">
+            <h1 className="text-3xl font-semibold tracking-tight text-balance sm:text-5xl">
               BlogPost.in
             </h1>
 
-            <p className="mt-6 text-lg/8 text-pretty text-gray-300">
+            <p className="hero-description mt-6 text-lg/8 text-pretty">
               A simple yet powerful blog management app. Create,
               read and maintain your blogs - all in one place.
             </p>
@@ -40,17 +40,17 @@ export default function HeroSection() {
               {/* Get Started Button */}
               <Link
                 to="/dashboard"
-                className="rounded-md bg-gray-700 px-3.5 py-2.5 text-sm font-semibold text-white inset-ring inset-ring-white/5 hover:bg-gray-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                className="btn btn-primary"
               >
                 Get Started
               </Link>
 
               <a
                 href="#"
-                className="text-sm/6 font-semibold text-white hover:text-gray-100"
+                className="hero-link text-sm/6 font-semibold"
               >
                 Learn more
-                <span aria-hidden="true"> →</span>
+                <span aria-hidden="true"> &rarr;</span>
               </a>
             </div>
           </div>
