@@ -1,6 +1,16 @@
 import { Link } from "react-router-dom";
+function Blogs({ blogList = [], onDelete }) {
+  const sortedBlogs = [...blogList].sort(
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+  );
 
-function Blogs({ blogList, onDelete }) {
+  const getAuthorName = (author) => {
+    if (!author) return "Unknown author";
+    if (typeof author === "string") return author;
+
+    return author.username || author.email || "Unknown author";
+  };
+
   // Check if blog was created within the last 2 days
   const isNewBlog = (createdAt) => {
     const createdDate = new Date(createdAt);
@@ -14,11 +24,11 @@ function Blogs({ blogList, onDelete }) {
 
   return (
     <div className="max-w-7xl mx-auto px-6 pb-16">
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {blogList.map((blog) => (
+      <div className="grid md:grid-cols-3 lg:grid-cols-3 gap-6">
+        {sortedBlogs.map((blog) => (
           <div
             key={blog._id}
-            className="card blog-card rounded-xl transition-all duration-200 hover:-translate-y-1"
+            className="card border border-base-300 bg-base-100 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg"
           >
             <div className="card-body p-8">
               <div className="flex justify-between">
@@ -26,17 +36,19 @@ function Blogs({ blogList, onDelete }) {
                   <h2 className="card-title text-lg font-semibold">
                     {blog.title}
                   </h2>
-                  <p className="text-sm opacity-60">By {blog.author}</p>
+                  <p className="text-sm opacity-60">
+                    By {getAuthorName(blog.author)}
+                  </p>
                 </div>
 
                 {isNewBlog(blog.createdAt) && (
-                  <span className="badge border-none text-xs bg-green-500/20 text-green-600 px-3 py-3 rounded-full">
+                  <span className="badge badge-success badge-outline px-3 py-3 text-xs">
                     New
                   </span>
                 )}
               </div>
 
-              <p className="text-sm blog-card-excerpt leading-relaxed line-clamp-3">
+              <p className="text-sm leading-relaxed text-base-content/70 line-clamp-3">
                 {blog.content.substring(0, 100)} ....
               </p>
 
@@ -48,6 +60,12 @@ function Blogs({ blogList, onDelete }) {
                   className="btn btn-success shadow-none rounded-full"
                 >
                   View Blog
+                </Link>
+                <Link
+                  to={`/edit/${blog._id}`}
+                  className="btn btn-primary rounded-full"
+                >
+                  Edit
                 </Link>
 
                 <button

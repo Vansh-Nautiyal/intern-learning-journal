@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 export default function HeroSection() {
   return (
-    <div className="hero-shell">
-      <div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
-        <div className="hero-panel relative isolate overflow-hidden px-6 pt-16 after:pointer-events-none after:absolute after:inset-0 after:inset-ring after:inset-ring-white/10 sm:rounded-3xl sm:px-16 after:sm:rounded-3xl md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
+    <div className="bg-base-200 text-base-content">
+      <div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-20 lg:px-8">
+        <div className="relative isolate overflow-hidden bg-base-100 px-6 pt-16 shadow-xl after:pointer-events-none after:absolute after:inset-0 after:inset-ring after:inset-ring-base-content/10 sm:rounded-3xl sm:px-16 after:sm:rounded-3xl md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
           <svg
             viewBox="0 0 1024 1024"
             aria-hidden="true"
@@ -30,7 +30,7 @@ export default function HeroSection() {
               BlogPost.in
             </h1>
 
-            <p className="hero-description mt-6 text-lg/8 text-pretty">
+            <p className="mt-6 text-lg/8 text-base-content/70 text-pretty">
               A simple yet powerful blog management app. Create,
               read and maintain your blogs - all in one place.
             </p>
@@ -39,7 +39,7 @@ export default function HeroSection() {
 
               {/* Get Started Button */}
               <Link
-                to="/dashboard"
+                to="/login"
                 className="btn btn-primary"
               >
                 Get Started
@@ -47,7 +47,7 @@ export default function HeroSection() {
 
               <a
                 href="#"
-                className="hero-link text-sm/6 font-semibold"
+                className="text-sm/6 font-semibold text-base-content hover:text-primary"
               >
                 Learn more
                 <span aria-hidden="true"> &rarr;</span>

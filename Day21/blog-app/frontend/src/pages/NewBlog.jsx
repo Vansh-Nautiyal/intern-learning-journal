@@ -10,21 +10,42 @@ function CreateBlog() {
   const [blog, setBlog] = useState({
     title: "",
     content: "",
-    author: "",
   });
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const getAuthConfig = () => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      throw new Error("Please log in before publishing a blog.");
+    }
+
+    return {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+  };
 
   // Fetch existing blog if editing
   useEffect(() => {
     if (id) {
       const fetchBlog = async () => {
         try {
+          const config = getAuthConfig();
           const response = await axios.get(
-            `http://localhost:3000/api/blogs/${id}`
+            `http://localhost:3000/api/blogs/${id}`,
+            config
           );
 
           setBlog(response.data);
         } catch (error) {
-          console.log(error);
+          setError(
+            error.response?.data?.message ||
+              error.message ||
+              "Could not load this blog."
+          );
         }
       };
 
@@ -41,25 +62,37 @@ function CreateBlog() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
+    setLoading(true);
 
     try {
+      const config = getAuthConfig();
+
       if (id) {
         // Edit existing blog
         await axios.put(
           `http://localhost:3000/api/blogs/${id}`,
-          blog
+          blog,
+          config
         );
       } else {
         // Create new blog
         await axios.post(
           "http://localhost:3000/api/blogs",
-          blog
+          blog,
+          config
         );
       }
 
       navigate("/dashboard");
     } catch (error) {
-      console.log(error);
+      setError(
+        error.response?.data?.message ||
+          error.message ||
+          "Could not publish the blog. Please try again."
+      );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -74,6 +107,12 @@ function CreateBlog() {
               {id ? "Edit Blog" : "Create New Blog"}
             </h1>
 
+            {error && (
+              <div className="alert alert-error text-sm mb-6 py-2">
+                <span>{error}</span>
+              </div>
+            )}
+
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label className="label">
@@ -86,22 +125,6 @@ function CreateBlog() {
                   placeholder="Enter blog title"
                   className="input input-bordered w-full"
                   value={blog.title}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-              <div className="mb-4">
-                <label className="label">
-                  <span className="label-text mb-2">Author</span>
-                </label>
-
-                <input
-                  type="text"
-                  name="author"
-                  placeholder="Enter author name"
-                  className="input input-bordered w-full"
-                  value={blog.author}
                   onChange={handleChange}
                   required
                 />
@@ -122,8 +145,18 @@ function CreateBlog() {
                 />
               </div>
 
-              <button type="submit" className="btn btn-primary w-full">
-                {id ? "Update Blog" : "Publish Blog"}
+              <button
+                type="submit"
+                disabled={loading}
+                className="btn btn-primary w-full disabled:opacity-60"
+              >
+                {loading
+                  ? id
+                    ? "Updating..."
+                    : "Publishing..."
+                  : id
+                  ? "Update Blog"
+                  : "Publish Blog"}
               </button>
             </form>
           </div>

@@ -3,9 +3,8 @@ import HeroSection from "../components/HeroSection"
 function HomePage(){
     return (
         <div>
-        <Navbar/>
-        <HeroSection/>
-
+            <Navbar/>
+            <HeroSection/>
         </div>
     );
 }

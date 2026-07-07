@@ -1,28 +1,48 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../components/Navbar";
-import { Link } from "react-router-dom";
 
 function BlogDetails() {
   const { id } = useParams();
   const [blog, setBlog] = useState(null);
+  const [error, setError] = useState("");
 
-  useEffect(() => {
-    fetchBlog();
-  }, []);
+  const getAuthConfig = () => {
+    const token = localStorage.getItem("token");
 
-  const fetchBlog = async () => {
-    try {
-      const res = await axios.get(`http://localhost:3000/api/blogs/${id}`);
-
-      setBlog(res.data);
-    } catch (error) {
-      console.log(error);
+    if (!token) {
+      throw new Error("Please log in to view this blog.");
     }
+
+    return {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
   };
 
-  if (!blog) return <h1>Loading...</h1>;
+  useEffect(() => {
+    const fetchBlog = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:3000/api/blogs/${id}`,
+          getAuthConfig()
+        );
+
+        setBlog(res.data);
+      } catch (error) {
+        setError(
+          error.response?.data?.message ||
+            error.message ||
+            "Could not load this blog."
+        );
+      }
+    };
+
+    fetchBlog();
+  }, [id]);
+
   const formatDate = (timestamp) => {
     if (!timestamp) return "Unknown date";
     const date = new Date(timestamp);
@@ -37,6 +57,21 @@ function BlogDetails() {
       `${date.getSeconds().toString().padStart(2, "0")}`
     );
   };
+
+  if (error) {
+    return (
+      <div>
+        <Navbar />
+        <div className="max-w-6xl mx-auto p-10">
+          <div className="alert alert-error text-sm py-2">
+            <span>{error}</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!blog) return <h1>Loading...</h1>;
 
   return (
     <div>
@@ -54,7 +89,8 @@ function BlogDetails() {
         </div>
 
         <p className="text-gray-500 mb-8">
-          By {blog.author} | {formatDate(blog.createdAt)}
+          By {blog.author?.username || "Unknown author"} |{" "}
+          {formatDate(blog.createdAt)}
         </p>
         <p className="text-lg leading-8">{blog.content}</p>
       </div>

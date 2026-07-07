@@ -3,7 +3,11 @@ import { useEffect, useState } from "react";
 
 function Navbar() {
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem("theme") || "dark";
+    const savedTheme = localStorage.getItem("theme");
+
+    return savedTheme === "dark" || savedTheme === "light"
+      ? savedTheme
+      : "dark";
   });
 
   useEffect(() => {
@@ -18,7 +22,7 @@ function Navbar() {
   const isDarkTheme = theme === "dark";
 
   return (
-    <div className="app-navbar navbar sticky top-0 z-50 bg-base-100/80 backdrop-blur-md border-b px-6 py-5">
+    <div className="navbar sticky top-0 z-50 border-b border-base-300 bg-base-100/80 px-6 py-5 text-base-content backdrop-blur-md">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
@@ -104,7 +108,7 @@ function Navbar() {
 
         <button
           type="button"
-          className="theme-toggle btn btn-circle"
+          className="btn btn-ghost btn-circle"
           onClick={toggleTheme}
           aria-label={`Switch to ${isDarkTheme ? "light" : "dark"} theme`}
           title={`Switch to ${isDarkTheme ? "light" : "dark"} theme`}
