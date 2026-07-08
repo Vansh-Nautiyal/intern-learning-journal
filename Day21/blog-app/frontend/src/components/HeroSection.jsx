@@ -45,13 +45,7 @@ export default function HeroSection() {
                 Get Started
               </Link>
 
-              <a
-                href="#"
-                className="text-sm/6 font-semibold text-base-content hover:text-primary"
-              >
-                Learn more
-                <span aria-hidden="true"> &rarr;</span>
-              </a>
+              
             </div>
           </div>
 

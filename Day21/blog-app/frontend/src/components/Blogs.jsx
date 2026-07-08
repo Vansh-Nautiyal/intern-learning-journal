@@ -1,4 +1,8 @@
 import { Link } from "react-router-dom";
+import { AiFillDelete } from "react-icons/ai";
+import { AiFillEdit } from "react-icons/ai";
+
+
 function Blogs({ blogList = [], onDelete }) {
   const sortedBlogs = [...blogList].sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
@@ -28,7 +32,7 @@ function Blogs({ blogList = [], onDelete }) {
         {sortedBlogs.map((blog) => (
           <div
             key={blog._id}
-            className="card border border-base-300 bg-base-100 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg"
+            className="card border border-base-300 bg-base-100 shadow-lg transition-all duration-200 hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl"
           >
             <div className="card-body p-8">
               <div className="flex justify-between">
@@ -57,7 +61,7 @@ function Blogs({ blogList = [], onDelete }) {
               <div className="card-actions justify-end">
                 <Link
                   to={`/blogs/${blog._id}`}
-                  className="btn btn-success shadow-none rounded-full"
+                  className="btn bg-indigo-700 text-white shadow-none rounded-full"
                 >
                   View Blog
                 </Link>
@@ -66,15 +70,17 @@ function Blogs({ blogList = [], onDelete }) {
                   <>
                     <Link
                       to={`/edit/${blog._id}`}
-                      className="btn btn-primary rounded-full"
+                      className="btn btn-primary border-none shadow-none rounded-full bg-violet-700"
                     >
+                      <AiFillEdit/>
                       Edit
                     </Link>
 
                     <button
-                      className="btn btn-error shadow-none rounded-full"
+                      className="btn btn-error text-white shadow-none rounded-full"
                       onClick={() => onDelete(blog._id)}
                     >
+                      <AiFillDelete/>
                       Delete
                     </button>
                   </>

@@ -20,8 +20,8 @@ function Sidebar({ isOpen, onClose }) {
   }, [isOpen]);
 
   const links = [
-    { label: "Feed", to: "/feed" },
-    { label: "Dashboard", to: "/dashboard" },
+    { label: "Public Feed", to: "/feed" },
+    { label: "My Dashboard", to: "/dashboard" },
     { label: "Contact", to: "/contact" },
     { label: "About", to: "/about" },
   ];

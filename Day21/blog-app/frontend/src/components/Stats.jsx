@@ -9,7 +9,7 @@ function Stats({blogList}) {
             viewBox="0 0 24 24"
             className="inline-block h-8 w-8 stroke-current"
           >
-            <path
+            <path className="text-blue-500"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth="2"
@@ -30,7 +30,7 @@ function Stats({blogList}) {
             viewBox="0 0 24 24"
             className="inline-block h-8 w-8 stroke-current"
           >
-            <path
+            <path className="text-blue-500"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth="2"
@@ -51,7 +51,7 @@ function Stats({blogList}) {
             viewBox="0 0 24 24"
             className="inline-block h-8 w-8 stroke-current"
           >
-            <path
+            <path className="text-blue-500"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth="2"

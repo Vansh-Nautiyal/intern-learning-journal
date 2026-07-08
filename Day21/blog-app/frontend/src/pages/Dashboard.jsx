@@ -73,7 +73,7 @@ function Dashboard() {
           </h1>
           <Link
             to="/create"
-            className="btn btn-primary bg-blue-600 hover:bg-blue-500 border-none shadow-lg shadow-blue-600/20 transition"
+            className="btn btn-primary text-white bg-violet-700 hover:bg-violet-500 border-none shadow-lg shadow-blue-600/20 transition"
           >
             Create New Blog
           </Link>
