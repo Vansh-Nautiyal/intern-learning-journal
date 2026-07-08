@@ -61,19 +61,24 @@ function Blogs({ blogList = [], onDelete }) {
                 >
                   View Blog
                 </Link>
-                <Link
-                  to={`/edit/${blog._id}`}
-                  className="btn btn-primary rounded-full"
-                >
-                  Edit
-                </Link>
 
-                <button
-                  className="btn btn-error shadow-none rounded-full"
-                  onClick={() => onDelete(blog._id)}
-                >
-                  Delete
-                </button>
+                {onDelete && (
+                  <>
+                    <Link
+                      to={`/edit/${blog._id}`}
+                      className="btn btn-primary rounded-full"
+                    >
+                      Edit
+                    </Link>
+
+                    <button
+                      className="btn btn-error shadow-none rounded-full"
+                      onClick={() => onDelete(blog._id)}
+                    >
+                      Delete
+                    </button>
+                  </>
+                )}
               </div>
             </div>
           </div>

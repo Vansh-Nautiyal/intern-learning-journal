@@ -3,6 +3,7 @@ import axios from "axios";
 import Blogs from "../components/Blogs";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import Stats from "../components/Stats";
 
 function Dashboard() {
   const [blogs, setBlogs] = useState([]);
@@ -27,15 +28,15 @@ function Dashboard() {
     const fetchBlogs = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:3000/api/blogs/",
-          getAuthConfig()
+          "http://localhost:3000/api/blogs/my",
+          getAuthConfig(),
         );
         setBlogs(res.data);
       } catch (error) {
         setError(
           error.response?.data?.message ||
             error.message ||
-            "Could not load blogs."
+            "Could not load blogs.",
         );
       }
     };
@@ -47,17 +48,17 @@ function Dashboard() {
     try {
       await axios.delete(
         `http://localhost:3000/api/blogs/${id}`,
-        getAuthConfig()
+        getAuthConfig(),
       );
 
       setBlogs((currentBlogs) =>
-        currentBlogs.filter((blog) => blog._id !== id)
+        currentBlogs.filter((blog) => blog._id !== id),
       );
     } catch (error) {
       setError(
         error.response?.data?.message ||
           error.message ||
-          "Could not delete this blog."
+          "Could not delete this blog.",
       );
     }
   };
@@ -77,7 +78,9 @@ function Dashboard() {
             Create New Blog
           </Link>
         </div>
-
+        <div className="flex justify-center mx-auto my-10">
+          <Stats blogList={blogs}/>
+        </div>
         <h3 className="text-center font-semibold text-xl opacity-70 mb-6">
           My Blogs
         </h3>
