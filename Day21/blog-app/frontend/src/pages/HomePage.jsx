@@ -2,7 +2,7 @@ import Navbar from "../components/Navbar";
 import HeroSection from "../components/HeroSection"
 function HomePage(){
     return (
-        <div>
+        <div className="app-shell">
             <Navbar/>
             <HeroSection/>
         </div>

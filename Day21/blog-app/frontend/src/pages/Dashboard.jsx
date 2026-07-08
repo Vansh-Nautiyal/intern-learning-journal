@@ -64,24 +64,29 @@ function Dashboard() {
   };
 
   return (
-    <div>
+    <div className="app-shell">
       <Navbar />
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="flex items-center justify-between mt-12 mb-10">
-          <h1 className="text-3xl font-bold">
-            Hey, {user?.username || "Writer"}
-          </h1>
+      <div className="page-container">
+        <div className="mt-8 mb-6 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-wide text-primary">
+              Dashboard
+            </p>
+            <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
+              Hey, {user?.username || "Writer"}
+            </h1>
+          </div>
           <Link
             to="/create"
-            className="btn btn-primary text-white bg-violet-700 hover:bg-violet-500 border-none shadow-lg shadow-blue-600/20 transition"
+            className="btn btn-primary rounded-xl shadow-lg shadow-primary/20 transition"
           >
             Create New Blog
           </Link>
         </div>
-        <div className="flex justify-center mx-auto my-10">
+        <div className="mx-auto my-10 flex justify-center">
           <Stats blogList={blogs}/>
         </div>
-        <h3 className="text-center font-semibold text-xl opacity-70 mb-6">
+        <h3 className="mb-4 text-center text-xl font-semibold text-base-content/70">
           My Blogs
         </h3>
 

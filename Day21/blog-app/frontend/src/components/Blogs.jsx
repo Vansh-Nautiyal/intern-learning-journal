@@ -27,41 +27,39 @@ function Blogs({ blogList = [], onDelete }) {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-6 pb-16">
-      <div className="grid md:grid-cols-3 lg:grid-cols-3 gap-6">
+    <div className="page-container pb-16">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {sortedBlogs.map((blog) => (
           <div
             key={blog._id}
-            className="card border border-base-300 bg-base-100 shadow-lg transition-all duration-200 hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl"
+            className="card premium-card overflow-hidden rounded-2xl transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:shadow-2xl"
           >
-            <div className="card-body p-8">
-              <div className="flex justify-between">
-                <div>
-                  <h2 className="card-title text-lg font-semibold">
+            <div className="card-body gap-5 px-8 py-10">
+              <div className="flex items-start justify-between gap-4">
+                <div className="min-w-0">
+                  <h2 className="card-title line-clamp-2 text-lg font-semibold leading-snug">
                     {blog.title}
                   </h2>
-                  <p className="text-sm opacity-60">
+                  <p className="mt-2 text-sm text-base-content/60">
                     By {getAuthorName(blog.author)}
                   </p>
                 </div>
 
                 {isNewBlog(blog.createdAt) && (
-                  <span className="badge badge-success badge-outline px-3 py-3 text-xs">
+                  <span className="badge badge-success shrink-0 px-3 py-3 text-xs font-semibold">
                     New
                   </span>
                 )}
               </div>
 
-              <p className="text-sm leading-relaxed text-base-content/70 line-clamp-3">
+              <p className="line-clamp-3 text-sm leading-7 text-base-content/70">
                 {blog.content.substring(0, 100)} ....
               </p>
 
-              <br />
-
-              <div className="card-actions justify-end">
+              <div className="card-actions mt-auto justify-end gap-2">
                 <Link
                   to={`/blogs/${blog._id}`}
-                  className="btn bg-indigo-700 text-white shadow-none rounded-full"
+                  className="btn btn-primary rounded-xl shadow-lg shadow-primary/20"
                 >
                   View Blog
                 </Link>
@@ -70,17 +68,17 @@ function Blogs({ blogList = [], onDelete }) {
                   <>
                     <Link
                       to={`/edit/${blog._id}`}
-                      className="btn btn-primary border-none shadow-none rounded-full bg-violet-700"
+                      className="btn btn-outline btn-primary rounded-xl"
                     >
-                      <AiFillEdit/>
+                      <AiFillEdit className="h-5 w-5" />
                       Edit
                     </Link>
 
                     <button
-                      className="btn btn-error text-white shadow-none rounded-full"
+                      className="btn btn-error rounded-xl text-white shadow-none"
                       onClick={() => onDelete(blog._id)}
                     >
-                      <AiFillDelete/>
+                      <AiFillDelete className="h-5 w-5" />
                       Delete
                     </button>
                   </>

@@ -97,15 +97,20 @@ function CreateBlog() {
   };
 
   return (
-    <div>
+    <div className="app-shell">
       <Navbar />
 
-      <div className="flex justify-center items-center bg-base-200">
-        <div className="mt-10 card px-6 bg-base-100 shadow-xl w-full max-w-2xl">
-          <div className="card-body">
-            <h1 className="text-3xl font-bold text-center mb-6">
-              {id ? "Edit Blog" : "Create New Blog"}
-            </h1>
+      <div className="flex min-h-[calc(100vh-80px)] items-center justify-center px-4 py-10">
+        <div className="card premium-card w-full max-w-2xl rounded-2xl">
+          <div className="card-body p-6 sm:p-8">
+            <div className="mb-4 text-center">
+              <p className="text-sm font-semibold uppercase tracking-wide text-primary">
+                {id ? "Update draft" : "New story"}
+              </p>
+              <h1 className="mt-2 text-3xl font-bold tracking-tight">
+                {id ? "Edit Blog" : "Create New Blog"}
+              </h1>
+            </div>
 
             {error && (
               <div className="alert alert-error text-sm mb-6 py-2">
@@ -113,7 +118,7 @@ function CreateBlog() {
               </div>
             )}
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="space-y-5">
               <div className="mb-4">
                 <label className="label">
                   <span className="label-text mb-2">Blog Title</span>
@@ -123,7 +128,7 @@ function CreateBlog() {
                   type="text"
                   name="title"
                   placeholder="Enter blog title"
-                  className="input input-bordered w-full"
+                  className="input premium-input w-full rounded-xl"
                   value={blog.title}
                   onChange={handleChange}
                   required
@@ -138,7 +143,7 @@ function CreateBlog() {
                 <textarea
                   name="content"
                   placeholder="Write your blog..."
-                  className="textarea textarea-bordered w-full h-52"
+                  className="textarea premium-input h-56 w-full rounded-xl leading-7"
                   value={blog.content}
                   onChange={handleChange}
                   required
@@ -148,7 +153,7 @@ function CreateBlog() {
               <button
                 type="submit"
                 disabled={loading}
-                className="btn btn-primary w-full disabled:opacity-60"
+                className="btn btn-primary w-full rounded-xl shadow-lg shadow-primary/20 disabled:opacity-60"
               >
                 {loading
                   ? id

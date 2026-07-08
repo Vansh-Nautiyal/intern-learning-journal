@@ -60,9 +60,9 @@ function BlogDetails() {
 
   if (error) {
     return (
-      <div>
+      <div className="app-shell">
         <Navbar />
-        <div className="max-w-6xl mx-auto p-10">
+        <div className="page-container py-10">
           <div className="alert alert-error text-sm py-2">
             <span>{error}</span>
           </div>
@@ -71,29 +71,49 @@ function BlogDetails() {
     );
   }
 
-  if (!blog) return <h1>Loading...</h1>;
+  if (!blog) {
+    return (
+      <div className="app-shell">
+        <Navbar />
+        <div className="flex min-h-[calc(100vh-80px)] items-center justify-center">
+          <span className="loading loading-spinner loading-lg text-primary" />
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div>
+    <div className="app-shell">
       <Navbar />
 
-      <div className="max-w-6xl mx-auto p-10">
-        <div className="flex justify-between align-center">
-          <h1 className="text-3xl font-bold my-4">{blog.title}</h1>
+      <main className="page-container py-10">
+        <article className="premium-card rounded-2xl p-6 sm:p-10">
+        <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
+          <div className="ml-6">
+            <p className="text-sm font-semibold uppercase tracking-wide text-primary">
+              Blog Details
+            </p>
+            <h1 className="my-3 text-3xl font-bold tracking-tight sm:text-5xl">
+              {blog.title}
+            </h1>
+          </div>
           <Link
             to={`/edit/${blog._id}`}
-            className="btn bg-blue-800 rounded-4xl text-lg mr-20 mt-5 w-25"
+            className="btn btn-primary rounded-xl shadow-lg shadow-primary/20 mr-8 mt-10 w-20"
           >
             Edit
           </Link>
         </div>
 
-        <p className="text-gray-500 mb-8">
+        <p className="mb-8 ml-6 border-b border-base-300 pb-6 text-sm text-base-content/60">
           By {blog.author?.username || "Unknown author"} |{" "}
           {formatDate(blog.createdAt)}
         </p>
-        <p className="text-lg leading-8">{blog.content}</p>
-      </div>
+        <p className="whitespace-pre-wrap text-lg ml-6 mr-6 leading-8 text-base-content/85">
+          {blog.content}
+        </p>
+        </article>
+      </main>
     </div>
   );
 }

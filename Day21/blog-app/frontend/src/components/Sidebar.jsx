@@ -1,7 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { FiEdit3, FiHome, FiInfo, FiMail, FiRss } from "react-icons/fi";
 
 function Sidebar({ isOpen, onClose }) {
+  const { pathname } = useLocation();
+
   // Close on Escape key
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -20,10 +23,11 @@ function Sidebar({ isOpen, onClose }) {
   }, [isOpen]);
 
   const links = [
-    { label: "Public Feed", to: "/feed" },
-    { label: "My Dashboard", to: "/dashboard" },
-    { label: "Contact", to: "/contact" },
-    { label: "About", to: "/about" },
+    { label: "Public Feed", to: "/feed", icon: FiRss },
+    { label: "My Dashboard", to: "/dashboard", icon: FiHome },
+    { label: "Create Blog", to: "/create", icon: FiEdit3 },
+    { label: "Contact", to: "/contact", icon: FiMail },
+    { label: "About", to: "/about", icon: FiInfo },
   ];
 
   return (
@@ -31,22 +35,24 @@ function Sidebar({ isOpen, onClose }) {
       {/* Overlay */}
       <div
         onClick={onClose}
-        className={`fixed inset-0 z-[55] bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${
+        className={`fixed inset-0 z-[55] bg-neutral/60 backdrop-blur-sm transition-opacity duration-300 ${
           isOpen ? "opacity-65 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       />
 
       {/* Sidebar panel */}
       <aside
-        className={`fixed top-0 left-0 z-[60] h-full w-72 max-w-[80vw] bg-base-100 border-r border-base-400
+        className={`fixed top-0 left-0 z-[60] flex h-full w-72 max-w-[80vw] flex-col border-r border-base-300 bg-base-100 shadow-2xl
           transform transition-transform duration-300 ease-in-out
           ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
       >
-        <div className="flex items-center justify-between px-6 py-5 border-b border-base-300">
-          <span className="text-lg font-semibold tracking-tight">Blog App</span>
+        <div className="flex items-center justify-between border-b border-base-300 px-6 py-5">
+          <span className="text-lg font-bold tracking-tight text-base-content">
+            Blog App
+          </span>
           <button
             onClick={onClose}
-            className="btn btn-ghost btn-circle btn-sm"
+            className="btn btn-ghost btn-circle btn-sm hover:bg-primary/10 hover:text-primary"
             aria-label="Close menu"
           >
             <svg
@@ -66,18 +72,38 @@ function Sidebar({ isOpen, onClose }) {
           </button>
         </div>
 
-        <nav className="menu p-4 gap-1 ">
-          {links.map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              onClick={onClose}
-              className="rounded-lg px-4 py-3 text-base font-medium hover:bg-base-200 transition"
-            >
-              {link.label}
-            </Link>
-          ))}
+        <nav className="menu flex-1 gap-2 p-4">
+          {links.map((link) => {
+            const Icon = link.icon;
+            const isActive = pathname === link.to;
+
+            return (
+              <Link
+                key={link.to}
+                to={link.to}
+                onClick={onClose}
+                className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-200 ${
+                  isActive
+                    ? "bg-primary text-primary-content shadow-lg shadow-primary/20"
+                    : "text-base-content/75 hover:bg-primary/10 hover:text-primary"
+                }`}
+              >
+                <Icon className="h-5 w-5 shrink-0" />
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
+
+        <div className="border-t border-base-300 p-4">
+          <Link
+            to="/login"
+            onClick={onClose}
+            className="btn btn-outline btn-secondary w-full rounded-xl"
+          >
+            Account
+          </Link>
+        </div>
       </aside>
     </>
   );

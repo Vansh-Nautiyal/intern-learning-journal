@@ -27,13 +27,16 @@ function Feed() {
   }, []);
   
   return (
-    <div>
+    <div className="app-shell">
     <Navbar />
-    <div className="max-w-6xl mx-auto px-6">
-      <div className="flex items-center justify-between mt-12 mb-10">
-      <h3 className="text-center font-semibold text-xl opacity-70 mb-6">
-        All Blogs
-      </h3>
+    <div className="page-container">
+      <div className="mt-12 mb-10">
+        <p className="text-sm font-semibold uppercase tracking-wide text-primary">
+          Public Feed
+        </p>
+        <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
+          All Blogs
+        </h1>
       </div>
 
       {error && (

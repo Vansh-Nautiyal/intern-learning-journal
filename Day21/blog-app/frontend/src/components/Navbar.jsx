@@ -29,12 +29,12 @@ function Navbar() {
     <div>
       <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-      <div className="navbar sticky top-0 z-50 border-b border-base-300 bg-base-100/80 px-6 py-5 text-base-content backdrop-blur-md">
+      <div className="navbar fixed top-0 left-0 right-0 z-50 border-b border-base-300 bg-base-100/90 px-4 py-5 text-base-content shadow-sm backdrop-blur-xl transition-colors duration-200 sm:px-6">
         <div className="navbar-start">
           <button
             type="button"
             onClick={() => setIsSidebarOpen(true)}
-            className="btn btn-ghost btn-circle"
+            className="btn btn-ghost btn-circle hover:bg-primary/10 hover:text-primary"
             aria-label="Open menu"
           >
             <svg
@@ -55,13 +55,16 @@ function Navbar() {
         </div>
 
         <div className="navbar-center">
-          <Link to={token ? "/dashboard" : "/"} className="text-3xl font-semibold tracking-tight">
+          <Link
+            to={token ? "/dashboard" : "/"}
+            className="text-xl font-bold tracking-tight text-base-content transition-colors hover:text-primary sm:text-2xl"
+          >
             Blog App
           </Link>
         </div>
 
-        <div className="navbar-end">
-          <button className="btn btn-ghost btn-circle">
+        <div className="navbar-end gap-1">
+          <button className="btn btn-ghost btn-circle hover:bg-primary/10 hover:text-primary">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -78,7 +81,7 @@ function Navbar() {
               />{" "}
             </svg>
           </button>
-          <button className="btn btn-ghost btn-circle">
+          <button className="btn btn-ghost btn-circle hover:bg-primary/10 hover:text-primary">
             <div className="indicator">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -101,7 +104,7 @@ function Navbar() {
 
           <button
             type="button"
-            className="btn btn-ghost btn-circle"
+            className="btn btn-ghost btn-circle hover:bg-primary/10 hover:text-primary"
             onClick={toggleTheme}
             aria-label={`Switch to ${isDarkTheme ? "light" : "dark"} theme`}
             title={`Switch to ${isDarkTheme ? "light" : "dark"} theme`}
@@ -140,6 +143,9 @@ function Navbar() {
           </button>
         </div>
       </div>
+
+      {/* Spacer to prevent page content from sliding under the fixed navbar */}
+      <div className="h-[76px] sm:h-[84px]" />
     </div>
   );
 }
