@@ -14,6 +14,12 @@ const blogSchema = new mongoose.Schema({
         ref : "User",
         required: true,
     }, 
+    tags : [
+        {
+            type : String,
+            trim : true,
+        },
+    ],
     },
     {
         timestamps: true,

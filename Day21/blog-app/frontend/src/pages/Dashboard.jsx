@@ -67,7 +67,7 @@ function Dashboard() {
     <div className="app-shell">
       <Navbar />
       <div className="page-container">
-        <div className="mt-8 mb-6 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+        <div className="my-6 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-sm font-semibold uppercase tracking-wide text-primary">
               Dashboard

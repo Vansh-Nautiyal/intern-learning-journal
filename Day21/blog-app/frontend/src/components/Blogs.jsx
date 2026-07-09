@@ -27,20 +27,20 @@ function Blogs({ blogList = [], onDelete }) {
   };
 
   return (
-    <div className="page-container pb-16">
+    <div className="page-container pb-10">
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {sortedBlogs.map((blog) => (
           <div
             key={blog._id}
             className="card premium-card overflow-hidden rounded-2xl transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:shadow-2xl"
           >
-            <div className="card-body gap-5 px-8 py-10">
+            <div className="card-body gap-5 px-8 py-8">
               <div className="flex items-start justify-between gap-4">
                 <div className="min-w-0">
-                  <h2 className="card-title line-clamp-2 text-lg font-semibold leading-snug">
+                  <h1 className="card-title line-clamp-2 text-2xl font-semibold leading-snug">
                     {blog.title}
-                  </h2>
-                  <p className="mt-2 text-sm text-base-content/60">
+                  </h1>
+                  <p className="mt-1 text-sm text-base-content/60">
                     By {getAuthorName(blog.author)}
                   </p>
                 </div>
@@ -51,9 +51,10 @@ function Blogs({ blogList = [], onDelete }) {
                   </span>
                 )}
               </div>
+              <div className="border-t border-base-content/10" />
 
               <p className="line-clamp-3 text-sm leading-7 text-base-content/70">
-                {blog.content.substring(0, 100)} ....
+                {blog.content.substring(0, 200)} ....
               </p>
 
               <div className="card-actions mt-auto justify-end gap-2">
@@ -61,7 +62,7 @@ function Blogs({ blogList = [], onDelete }) {
                   to={`/blogs/${blog._id}`}
                   className="btn btn-primary rounded-xl shadow-lg shadow-primary/20"
                 >
-                  View Blog
+                  Read Blog
                 </Link>
 
                 {onDelete && (

@@ -31,19 +31,21 @@ function Feed() {
     <Navbar />
     <div className="page-container">
       <div className="mt-12 mb-10">
-        <p className="text-sm font-semibold uppercase tracking-wide text-primary">
+        <h1 className="mt-2 text-center text-3xl font-bold tracking-tight uppercase sm:text-4xl text-primary">
           Public Feed
-        </p>
-        <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
-          All Blogs
         </h1>
+        <p className="text-lg pt-4 pb-4 text-center font-semibold tracking-wide text-secondary">
+          Explore Blogs posted by other bloggers
+        </p>
       </div>
 
-      {error && (
+      {error &&
+      (
         <div className="alert alert-error text-sm mb-6 py-2">
           <span>{error}</span>
         </div>
-      )}
+      )
+      }
     </div>
     <Blogs blogList={blogs} />
   </div>

@@ -43,8 +43,8 @@
   default: false;
   prefersdark: true;
   color-scheme: dark;
-  --color-base-100: #09090b;
-  --color-base-200: #121216;
+  --color-base-100: #191919;
+  --color-base-200: #121212;
   --color-base-300: #27272a;
   --color-base-content: #fafafa;
   --color-primary: #8b5cf6;
@@ -121,7 +121,23 @@
   }
 
   .page-container {
-    width: min(100% - 2rem, 72rem);
+    width: min(100% - 2rem, 78rem);
     margin-inline: auto;
   }
+}
+
+/* Default: dark theme is your app's default, so dark image shows, light image hidden */
+.theme-img-light {
+  display: none;
+}
+.theme-img-dark {
+  display: block;
+}
+
+/* When html has data-theme="light", flip which image shows */
+:root[data-theme="light"] .theme-img-light {
+  display: block;
+}
+:root[data-theme="light"] .theme-img-dark {
+  display: none;
 }
