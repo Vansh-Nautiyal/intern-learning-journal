@@ -19,7 +19,7 @@ function BlogDetails() {
     const fetchBlog = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:3000/api/blogs/${id}`,
+          `${import.meta.env.VITE_API_URL}/api/blogs/${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

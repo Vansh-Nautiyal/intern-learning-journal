@@ -25,7 +25,7 @@ function CreateBlog() {
       const fetchBlog = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:3000/api/blogs/${id}`,
+            `${import.meta.env.VITE_API_URL}/api/blogs/${id}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -68,10 +68,10 @@ function CreateBlog() {
 
       if (id) {
         // Edit existing blog
-        await axios.put(`http://localhost:3000/api/blogs/${id}`, blog, config);
+        await axios.put(`${import.meta.env.VITE_API_URL}/api/blogs/${id}`, blog, config);
       } else {
         // Create new blog
-        await axios.post("http://localhost:3000/api/blogs", blog, config);
+        await axios.post(`${import.meta.env.VITE_API_URL}/api/blogs`, blog, config);
       }
 
       navigate("/dashboard");

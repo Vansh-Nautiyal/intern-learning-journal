@@ -27,8 +27,8 @@ function Feed() {
 
         const url =
           params.toString() === ""
-            ? "http://localhost:3000/api/blogs"
-            : `http://localhost:3000/api/blogs?${params.toString()}`;
+            ? `${import.meta.env.VITE_API_URL}/api/blogs`
+            : `${import.meta.env.VITE_API_URL}/api/blogs?${params.toString()}`;
         const res = await axios.get(url);
 
         setBlogs(res.data);

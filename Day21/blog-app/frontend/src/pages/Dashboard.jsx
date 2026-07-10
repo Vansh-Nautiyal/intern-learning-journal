@@ -19,7 +19,7 @@ function Dashboard() {
 
     const fetchBlogs = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/blogs/my", {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/blogs/my`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setBlogs(res.data);
@@ -37,7 +37,7 @@ function Dashboard() {
 
   const deleteBlog = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/api/blogs/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/blogs/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
