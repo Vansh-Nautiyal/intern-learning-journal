@@ -27,7 +27,6 @@ function Sidebar({ isOpen, onClose }) {
     { label: "My Dashboard", to: "/dashboard", icon: FiHome },
     { label: "Create Blog", to: "/create", icon: FiEdit3 },
     { label: "Contact", to: "/contact", icon: FiMail },
-    { label: "About", to: "/about", icon: FiInfo },
   ];
 
   return (
@@ -97,7 +96,7 @@ function Sidebar({ isOpen, onClose }) {
 
         <div className="border-t border-base-300 p-4">
           <Link
-            to="/login"
+            to="/Profile"
             onClick={onClose}
             className="btn btn-outline btn-secondary w-full rounded-xl"
           >

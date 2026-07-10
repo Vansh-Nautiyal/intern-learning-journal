@@ -5,7 +5,7 @@ function Stats({ blogList }) {
   }, 0);
   return (
     <div className="stats stats-vertical w-full overflow-hidden rounded-2xl border border-base-300 bg-base-100 shadow-xl shadow-neutral/10 lg:stats-horizontal">
-      <div className="stat">
+      <div className="stat px-8 py-6">
         <div className="stat-figure text-primary">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -26,7 +26,7 @@ function Stats({ blogList }) {
         <div className="stat-desc">Total Blog Count</div>
       </div>
 
-      <div className="stat">
+      <div className="stat px-8 py-6">
         <div className="stat-figure text-primary">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +47,7 @@ function Stats({ blogList }) {
         <div className="stat-desc">Total words in all blogs</div>
       </div>
 
-      <div className="stat">
+      <div className="stat px-8 py-6">
         <div className="stat-figure text-primary">
           <svg
             xmlns="http://www.w3.org/2000/svg"

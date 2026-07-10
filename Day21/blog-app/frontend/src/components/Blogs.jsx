@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { AiFillDelete } from "react-icons/ai";
 import { AiFillEdit } from "react-icons/ai";
-
+import { CiRead } from "react-icons/ci";
 
 function Blogs({ blogList = [], onDelete }) {
   const sortedBlogs = [...blogList].sort(
@@ -28,7 +28,7 @@ function Blogs({ blogList = [], onDelete }) {
 
   return (
     <div className="page-container pb-10">
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
         {sortedBlogs.map((blog) => (
           <div
             key={blog._id}
@@ -52,17 +52,27 @@ function Blogs({ blogList = [], onDelete }) {
                 )}
               </div>
               <div className="border-t border-base-content/10" />
-
               <p className="line-clamp-3 text-sm leading-7 text-base-content/70">
                 {blog.content.substring(0, 200)} ....
               </p>
+              <div className="flex flex-wrap gap-2 mt-3">
+                {blog.tags?.slice(0, 3).map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full bg-primary/10 px-4  py-2 text-xs font-medium text-violet-500 border border-primary/30"
+                  >
+                    {tag.charAt(0).toUpperCase() + tag.slice(1)}
+                  </span>
+                ))}
+              </div>
 
               <div className="card-actions mt-auto justify-end gap-2">
                 <Link
                   to={`/blogs/${blog._id}`}
-                  className="btn btn-primary rounded-xl shadow-lg shadow-primary/20"
+                  className="btn btn-primary rounded-xl shadow-none"
                 >
-                  Read Blog
+                  <CiRead/>
+                  Read
                 </Link>
 
                 {onDelete && (

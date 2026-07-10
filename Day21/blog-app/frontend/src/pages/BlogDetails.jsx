@@ -11,9 +11,9 @@ function BlogDetails() {
 
   const currentUser = JSON.parse(localStorage.getItem("user") || "null");
   const isAuthor =
-  currentUser &&
-  blog?.author &&
-  (currentUser.id === (blog.author._id || blog.author));
+    currentUser &&
+    blog?.author &&
+    currentUser.id === (blog.author._id || blog.author);
 
   const navigate = useNavigate();
   const signIn = () => {
@@ -104,23 +104,33 @@ function BlogDetails() {
               <p className="text-sm font-semibold uppercase tracking-wide text-primary">
                 Blog Details
               </p>
-              <h1 className="my-3 text-3xl font-bold tracking-tight sm:text-5xl">
-                {blog.title}
-              </h1>
+              <h1 className="my-3 text-3xl font-bold">{blog.title}</h1>
             </div>
-            {isAuthor && <Link
-              to={`/edit/${blog._id}`}
-              className="btn btn-primary rounded-xl shadow-lg shadow-primary/20 mr-8 mt-10 w-20"
-            >
-              Edit
-            </Link>}
+            {isAuthor && (
+              <Link
+                to={`/edit/${blog._id}`}
+                className="btn btn-primary rounded-xl shadow-lg shadow-primary/20 mr-8 mt-10 w-20"
+              >
+                Edit
+              </Link>
+            )}
+          </div>
+          <div className="flex  flex-wrap gap-2 mx-5 my-4">
+            {blog.tags?.map((tag) => (
+              <span
+                key={tag}
+                className="rounded-full bg-primary/10 px-4  py-2 text-xs font-medium text-primary border border-primary/30"
+              >
+                {tag.charAt(0).toUpperCase() + tag.slice(1)}
+              </span>
+            ))}
           </div>
 
           <p className="mb-8 ml-6 border-b border-base-300 pb-6 text-sm text-base-content/60">
             By {blog.author?.username || "Unknown author"} |{" "}
             {formatDate(blog.createdAt)}
           </p>
-          <p className="whitespace-pre-wrap text-lg ml-6 mr-6 leading-8 text-base-content/85">
+          <p className="whitespace-pre-wrap text-lg mx-6 leading-8 text-base-content/85">
             {blog.content}
           </p>
         </article>

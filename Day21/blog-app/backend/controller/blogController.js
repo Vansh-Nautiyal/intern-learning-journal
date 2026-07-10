@@ -1,11 +1,17 @@
 import Blog from "../model/blog.js";
 
+const normalizeTags = (tags = []) => [
+  ...new Set(tags.map((tag) => tag.trim().toLowerCase()).filter(Boolean)),
+];
+
 export const createBlog = async (req, res) => {
   try {
-    const { title, content } = req.body;
+    const { title, content, tags } = req.body;
+    const normalizedTags = normalizeTags(tags);
     const blog = await Blog.create({
       title,
       content,
+      tags : normalizedTags,
       author: req.user._id,
     });
     res.status(201).json(blog);
@@ -17,14 +23,32 @@ export const createBlog = async (req, res) => {
 
 export const getBlogs = async (req, res) => {
   try {
-    const blogs = await Blog.find()
-      .populate("author", "username email")
+    const { tag, search } = req.query;
+
+    const filter = {};
+
+    // Filter by tag
+    if (tag && tag !== "all") {
+      filter.tags = tag;
+    }
+
+    // Search by title
+    if (search && search.trim() !== "") {
+      filter.title = {
+        $regex: search,
+        $options: "i",
+      };
+    }
+
+    const blogs = await Blog.find(filter)
+      .populate("author", "username")
       .sort({ createdAt: -1 });
 
     res.status(200).json(blogs);
-  }
-  catch (error) {
-    res.status(500).json({ message: error.message });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
   }
 };
 
@@ -103,6 +127,9 @@ export const updateBlog = async (req, res) => {
 
     blog.title = req.body.title ?? blog.title;
     blog.content = req.body.content ?? blog.content;
+    blog.tags = Array.isArray(req.body.tags)
+      ? normalizeTags(req.body.tags)
+      : blog.tags;
 
     const updatedBlog = await blog.save();
 

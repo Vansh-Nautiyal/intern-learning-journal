@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { RiLogoutBoxLine } from "react-icons/ri";
+import { IoMdAdd } from "react-icons/io";
 import Blogs from "../components/Blogs";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
@@ -63,6 +65,10 @@ function Dashboard() {
     }
   };
 
+  const logOut = () =>{
+    localStorage.removeItem("token");
+  }
+
   return (
     <div className="app-shell">
       <Navbar />
@@ -76,17 +82,28 @@ function Dashboard() {
               Hey, {user?.username || "Writer"}
             </h1>
           </div>
-          <Link
-            to="/create"
-            className="btn btn-primary rounded-xl shadow-lg shadow-primary/20 transition"
-          >
-            Create New Blog
-          </Link>
+          <div>
+            <Link
+              to="/create"
+              className="btn mx-2 btn-primary rounded-xl shadow-lg shadow-primary/20 transition"
+            >
+              <IoMdAdd/>
+              New Blog
+            </Link>
+            <Link
+              to="/"
+              className="btn mx-2 btn-primary rounded-xl shadow-lg shadow-primary/20 transition"
+              onClick={logOut}
+            >
+              <RiLogoutBoxLine />
+              Logout
+            </Link>
+          </div>
         </div>
         <div className="mx-auto my-10 flex justify-center">
-          <Stats blogList={blogs}/>
+          <Stats blogList={blogs} />
         </div>
-        <h3 className="mb-4 text-center text-xl font-semibold text-base-content/70">
+        <h3 className="my-2 py-4 text-center text-xl font-semibold text-base-content/70">
           My Blogs
         </h3>
 

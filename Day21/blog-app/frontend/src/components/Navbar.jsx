@@ -29,7 +29,7 @@ function Navbar() {
     <div>
       <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-      <div className="navbar fixed top-0 left-0 right-0 z-50 border-b border-base-300 bg-base-100/90 px-4 py-5 text-base-content shadow-sm backdrop-blur-xl transition-colors duration-200 sm:px-6">
+      <div className="navbar fixed top-0 left-0 right-0 z-50 border-b border-base-300 bg-base-100/90 px-4 py-4 text-base-content shadow-sm backdrop-blur-xl transition-colors duration-200 sm:px-6">
         <div className="navbar-start">
           <button
             type="button"

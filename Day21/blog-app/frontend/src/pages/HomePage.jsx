@@ -38,7 +38,7 @@ function HomePage() {
         </h1>
       </div>
 
-      <div className="page-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 my-10 pb-10">
+      <div className="page-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 my-10 pb-10">
         {cards.map((card) => (
           <div
             key={card.title}
