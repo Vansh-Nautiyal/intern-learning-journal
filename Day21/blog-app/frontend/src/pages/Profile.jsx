@@ -1,7 +1,9 @@
 import Navbar from "../components/Navbar";
+import { useAuth } from "../context/useAuth";
 
 export default function Profile() {
-  const user = JSON.parse(localStorage.getItem("user")) || {};
+  const { user } = useAuth();
+  const profileUser = user || {};
 
   const initials = (name) =>
     name
@@ -14,8 +16,8 @@ export default function Profile() {
       : "?";
 
   const details = [
-    { label: "Username", value: user.username || "Unknown" },
-    { label: "Email", value: user.email || "Not provided" },
+    { label: "Username", value: profileUser.username || "Unknown" },
+    { label: "Email", value: profileUser.email || "Not provided" },
   ];
 
   return (
@@ -27,16 +29,16 @@ export default function Profile() {
           <div className="flex justify-center">
             <div className="flex h-24 w-24 items-center justify-center rounded-full border-2 border-primary/30 bg-primary/10">
               <span className="text-3xl font-bold text-primary">
-                {initials(user.username)}
+                {initials(profileUser.username)}
               </span>
             </div>
           </div>
 
           <h1 className="mt-5 text-center text-2xl font-bold tracking-tight">
-            {user.username || "Unknown user"}
+            {profileUser.username || "Unknown user"}
           </h1>
           <p className="text-center text-sm text-base-content/60">
-            {user.email}
+            {profileUser.email}
           </p>
 
           <div className="premium-card mt-8 rounded-2xl p-6 sm:p-8">

@@ -1,39 +1,24 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
+import { useAuth } from "../context/useAuth";
+import { useSidebar } from "../context/useSidebar";
+import { useTheme } from "../context/useTheme";
 
 function Navbar() {
-  const token = localStorage.getItem("token");
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
-  const [theme, setTheme] = useState(() => {
-    const savedTheme = localStorage.getItem("theme");
-
-    return savedTheme === "dark" || savedTheme === "light"
-      ? savedTheme
-      : "dark";
-  });
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme((currentTheme) => (currentTheme === "light" ? "dark" : "light"));
-  };
-
+  const { isAuthenticated } = useAuth();
+  const { openSidebar } = useSidebar();
+  const { theme, toggleTheme } = useTheme();
   const isDarkTheme = theme === "dark";
 
   return (
     <div>
-      <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+      <Sidebar />
 
       <div className="navbar fixed top-0 left-0 right-0 z-50 border-b border-base-300 bg-base-100/90 px-4 py-4 text-base-content shadow-sm backdrop-blur-xl transition-colors duration-200 sm:px-6">
         <div className="navbar-start">
           <button
             type="button"
-            onClick={() => setIsSidebarOpen(true)}
+            onClick={openSidebar}
             className="btn btn-ghost btn-circle hover:bg-primary/10 hover:text-primary"
             aria-label="Open menu"
           >
@@ -56,7 +41,7 @@ function Navbar() {
 
         <div className="navbar-center">
           <Link
-            to={token ? "/dashboard" : "/"}
+            to={isAuthenticated ? "/dashboard" : "/"}
             className="text-xl font-bold tracking-tight text-base-content transition-colors hover:text-primary sm:text-2xl"
           >
             BlogPost.in

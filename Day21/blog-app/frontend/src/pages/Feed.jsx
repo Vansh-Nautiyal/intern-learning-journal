@@ -21,7 +21,7 @@ function Feed() {
           params.append("tag", selectedTag);
         }
 
-        if (searchQuery.trim() !== "") {
+        if (debouncedSearch.trim() !== "") {
           params.append("search", debouncedSearch);
         }
 
@@ -61,10 +61,6 @@ function Feed() {
 
   const visibleTags = allTags.slice(0, 9);
   const hiddenTags = allTags.slice(9);
-  const dropdownLabel = hiddenTags.includes(selectedTag)
-    ? selectedTag.charAt(0).toUpperCase() + selectedTag.slice(1)
-    : "More";
-
   return (
     <div className="app-shell">
       <Navbar />

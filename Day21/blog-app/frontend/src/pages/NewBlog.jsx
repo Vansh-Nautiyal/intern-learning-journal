@@ -3,10 +3,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { IoMdAdd } from "react-icons/io";
 import Navbar from "../components/Navbar";
+import { useAuth } from "../context/useAuth";
 
 function CreateBlog() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { token } = useAuth();
 
   const [blog, setBlog] = useState({
     title: "",
@@ -17,29 +19,18 @@ function CreateBlog() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const getAuthConfig = () => {
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-      throw new Error("Please log in before publishing a blog.");
-    }
-
-    return {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-  };
-
   // Fetch existing blog if editing
   useEffect(() => {
     if (id) {
       const fetchBlog = async () => {
         try {
-          const config = getAuthConfig();
           const response = await axios.get(
             `http://localhost:3000/api/blogs/${id}`,
-            config,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            },
           );
 
           setBlog(response.data);
@@ -54,7 +45,7 @@ function CreateBlog() {
 
       fetchBlog();
     }
-  }, [id]);
+  }, [id, token]);
 
   const handleChange = (e) => {
     setBlog({
@@ -69,7 +60,11 @@ function CreateBlog() {
     setLoading(true);
 
     try {
-      const config = getAuthConfig();
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
 
       if (id) {
         // Edit existing blog

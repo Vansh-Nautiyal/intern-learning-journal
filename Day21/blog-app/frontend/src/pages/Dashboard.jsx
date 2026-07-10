@@ -3,36 +3,25 @@ import axios from "axios";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { IoMdAdd } from "react-icons/io";
 import Blogs from "../components/Blogs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Stats from "../components/Stats";
+import { useAuth } from "../context/useAuth";
 
 function Dashboard() {
+  const navigate = useNavigate();
   const [blogs, setBlogs] = useState([]);
   const [error, setError] = useState("");
-  const user = JSON.parse(localStorage.getItem("user"));
-
-  const getAuthConfig = () => {
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-      throw new Error("Please log in to view your blogs.");
-    }
-
-    return {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-  };
+  const { user, token, logout } = useAuth();
 
   useEffect(() => {
+    if (!token) return;
+
     const fetchBlogs = async () => {
       try {
-        const res = await axios.get(
-          "http://localhost:3000/api/blogs/my",
-          getAuthConfig(),
-        );
+        const res = await axios.get("http://localhost:3000/api/blogs/my", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         setBlogs(res.data);
       } catch (error) {
         setError(
@@ -44,14 +33,15 @@ function Dashboard() {
     };
 
     fetchBlogs();
-  }, []);
+  }, [token]);
 
   const deleteBlog = async (id) => {
     try {
-      await axios.delete(
-        `http://localhost:3000/api/blogs/${id}`,
-        getAuthConfig(),
-      );
+      await axios.delete(`http://localhost:3000/api/blogs/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       setBlogs((currentBlogs) =>
         currentBlogs.filter((blog) => blog._id !== id),
@@ -65,9 +55,10 @@ function Dashboard() {
     }
   };
 
-  const logOut = () =>{
-    localStorage.removeItem("token");
-  }
+  const handleLogout = () => {
+    navigate("/", { replace: true });
+    setTimeout(logout, 1);
+  };
 
   return (
     <div className="app-shell">
@@ -87,17 +78,17 @@ function Dashboard() {
               to="/create"
               className="btn mx-2 btn-primary rounded-xl shadow-lg shadow-primary/20 transition"
             >
-              <IoMdAdd/>
+              <IoMdAdd />
               New Blog
             </Link>
-            <Link
-              to="/"
+            <button
+              type="button"
               className="btn mx-2 btn-primary rounded-xl shadow-lg shadow-primary/20 transition"
-              onClick={logOut}
+              onClick={handleLogout}
             >
               <RiLogoutBoxLine />
               Logout
-            </Link>
+            </button>
           </div>
         </div>
         <div className="mx-auto my-10 flex justify-center">

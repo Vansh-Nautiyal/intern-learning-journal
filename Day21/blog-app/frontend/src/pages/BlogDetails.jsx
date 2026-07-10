@@ -2,45 +2,30 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../components/Navbar";
-import { replace, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/useAuth";
 
 function BlogDetails() {
   const { id } = useParams();
+  const { user, token } = useAuth();
   const [blog, setBlog] = useState(null);
   const [error, setError] = useState("");
 
-  const currentUser = JSON.parse(localStorage.getItem("user") || "null");
   const isAuthor =
-    currentUser &&
+    user &&
     blog?.author &&
-    currentUser.id === (blog.author._id || blog.author);
-
-  const navigate = useNavigate();
-  const signIn = () => {
-    navigate("/login", { replace: true });
-  };
-
-  const getAuthConfig = () => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      signIn();
-    }
-
-    return {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-  };
+    user.id === (blog.author._id || blog.author);
 
   useEffect(() => {
     const fetchBlog = async () => {
       try {
         const res = await axios.get(
           `http://localhost:3000/api/blogs/${id}`,
-          getAuthConfig(),
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
         );
-
         setBlog(res.data);
       } catch (error) {
         setError(
@@ -52,7 +37,7 @@ function BlogDetails() {
     };
 
     fetchBlog();
-  }, [id]);
+  }, [id, token]);
 
   const formatDate = (timestamp) => {
     if (!timestamp) return "Unknown date";

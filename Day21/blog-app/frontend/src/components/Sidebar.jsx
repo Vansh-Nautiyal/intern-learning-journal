@@ -1,26 +1,28 @@
 import { Link, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { FiEdit3, FiHome, FiInfo, FiMail, FiRss } from "react-icons/fi";
+import { FiEdit3, FiHome, FiMail, FiRss } from "react-icons/fi";
+import { useSidebar } from "../context/useSidebar";
 
-function Sidebar({ isOpen, onClose }) {
+function Sidebar() {
   const { pathname } = useLocation();
+  const { isSidebarOpen, closeSidebar } = useSidebar();
 
   // Close on Escape key
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") closeSidebar();
     };
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [onClose]);
+  }, [closeSidebar]);
 
   // Prevent background scroll while sidebar is open
   useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "";
+    document.body.style.overflow = isSidebarOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
-  }, [isOpen]);
+  }, [isSidebarOpen]);
 
   const links = [
     { label: "Public Feed", to: "/feed", icon: FiRss },
@@ -33,9 +35,9 @@ function Sidebar({ isOpen, onClose }) {
     <>
       {/* Overlay */}
       <div
-        onClick={onClose}
+        onClick={closeSidebar}
         className={`fixed inset-0 z-[55] bg-neutral/60 backdrop-blur-sm transition-opacity duration-300 ${
-          isOpen ? "opacity-65 pointer-events-auto" : "opacity-0 pointer-events-none"
+          isSidebarOpen ? "opacity-65 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       />
 
@@ -43,14 +45,14 @@ function Sidebar({ isOpen, onClose }) {
       <aside
         className={`fixed top-0 left-0 z-[60] flex h-full w-72 max-w-[80vw] flex-col border-r border-base-300 bg-base-100 shadow-2xl
           transform transition-transform duration-300 ease-in-out
-          ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
+          ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}`}
       >
         <div className="flex items-center justify-between border-b border-base-300 px-6 py-5">
           <span className="text-lg font-bold tracking-tight text-base-content">
             Blog App
           </span>
           <button
-            onClick={onClose}
+            onClick={closeSidebar}
             className="btn btn-ghost btn-circle btn-sm hover:bg-primary/10 hover:text-primary"
             aria-label="Close menu"
           >
@@ -80,7 +82,7 @@ function Sidebar({ isOpen, onClose }) {
               <Link
                 key={link.to}
                 to={link.to}
-                onClick={onClose}
+                onClick={closeSidebar}
                 className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-200 ${
                   isActive
                     ? "bg-primary text-primary-content shadow-lg shadow-primary/20"
@@ -97,7 +99,7 @@ function Sidebar({ isOpen, onClose }) {
         <div className="border-t border-base-300 p-4">
           <Link
             to="/Profile"
-            onClick={onClose}
+            onClick={closeSidebar}
             className="btn btn-outline btn-secondary w-full rounded-xl"
           >
             Account

@@ -2,9 +2,11 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../components/Navbar";
+import { useAuth } from "../context/useAuth";
 
 function Login() {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -14,35 +16,27 @@ function Login() {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  setError("");
-  setLoading(true);
+    e.preventDefault();
+    setError("");
+    setLoading(true);
 
-  try {
-    const response = await axios.post(
-      "http://localhost:3000/api/auth/login",
-      form
-    );
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/auth/login",
+        form,
+      );
 
-    // Store JWT
-    localStorage.setItem("token", response.data.token);
-
-    // Store logged-in user
-    localStorage.setItem(
-      "user",
-      JSON.stringify(response.data.user)
-    );
-
-    navigate("/dashboard");
-  } catch (err) {
-    setError(
-      err.response?.data?.message ||
-        "Couldn't log you in. Check your details and try again."
-    );
-  } finally {
-    setLoading(false);
-  }
-};
+      login(response.data.user, response.data.token);
+      navigate("/dashboard");
+    } catch (err) {
+      setError(
+        err.response?.data?.message ||
+          "Couldn't log you in. Check your details and try again.",
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="app-shell">
