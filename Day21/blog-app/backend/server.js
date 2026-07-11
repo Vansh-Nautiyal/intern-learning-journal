@@ -16,8 +16,8 @@ const allowedOrigins = [
 ].filter(Boolean);
 
 app.use(cors({
-  origin: allowedOrigins,
-  credentials: true
+  origin: true,
+  credentials: true,
 }));
 
 connectDB();
