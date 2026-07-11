@@ -44,11 +44,12 @@ function Blogs({ blogList = [], onDelete }) {
                   <h1 className="card-title line-clamp-2 text-2xl font-semibold leading-snug">
                     {blog.title}
                   </h1>
-                  <p className="mt-1 text-sm text-base-content/60">
-                    By {getAuthorName(blog.author)}
-                  </p>
-                  <p className="mt-1 text-xs text-base-content/50">
-                    {formatRelativeCreatedTime(blog.createdAt, now)}
+                  <p className="mt-2" >
+                    <span className="mt-1 text-sm font-semibold text-base-content/80">By {getAuthorName(blog.author)}</span>
+                    <span className="px-2">|</span>
+                    <span className="mt-3 text-sm text-base-content/70">
+                      {formatRelativeCreatedTime(blog.createdAt, now)}
+                    </span>
                   </p>
                 </div>
 
@@ -78,7 +79,7 @@ function Blogs({ blogList = [], onDelete }) {
                   to={`/blogs/${blog._id}`}
                   className="btn btn-primary rounded-xl shadow-none"
                 >
-                  <CiRead/>
+                  <CiRead />
                   Read
                 </Link>
 
