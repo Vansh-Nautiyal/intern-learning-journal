@@ -10,7 +10,7 @@ function ContactUs() {
     {
       label: "Phone",
       value: "+91 98765 XXXXX",
-      href: "tel:+919876543210",
+      href: "tel:+9198765XXXXX",
     },
     {
       label: "Location",
