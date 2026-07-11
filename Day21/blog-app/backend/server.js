@@ -14,7 +14,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      process.env.FRONTEND_URL,
+      "https://blog-post-five-mu.vercel.app/",
     ],
     credentials: true,
   })
