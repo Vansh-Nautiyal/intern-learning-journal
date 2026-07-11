@@ -11,7 +11,7 @@ const getStoredTheme = () => {
 
   return savedTheme === "dark" || savedTheme === "light"
     ? savedTheme
-    : "dark";
+    : "light";
 };
 
 export function ThemeProvider({ children }) {

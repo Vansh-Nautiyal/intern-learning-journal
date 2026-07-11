@@ -1,9 +1,24 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AiFillDelete } from "react-icons/ai";
 import { AiFillEdit } from "react-icons/ai";
 import { CiRead } from "react-icons/ci";
+import {
+  formatRelativeCreatedTime,
+  isWithinLastHours,
+} from "../utils/dateUtils";
 
 function Blogs({ blogList = [], onDelete }) {
+  const [now, setNow] = useState(() => Date.now());
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setNow(Date.now());
+    }, 60 * 1000);
+
+    return () => window.clearInterval(intervalId);
+  }, []);
+
   const sortedBlogs = [...blogList].sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
   );
@@ -13,17 +28,6 @@ function Blogs({ blogList = [], onDelete }) {
     if (typeof author === "string") return author;
 
     return author.username || author.email || "Unknown author";
-  };
-
-  // Check if blog was created within the last 2 days
-  const isNewBlog = (createdAt) => {
-    const createdDate = new Date(createdAt);
-    const currentDate = new Date();
-
-    const differenceInMs = currentDate - createdDate;
-    const differenceInDays = differenceInMs / (1000 * 60 * 60 * 24);
-
-    return differenceInDays <= 2;
   };
 
   return (
@@ -43,9 +47,12 @@ function Blogs({ blogList = [], onDelete }) {
                   <p className="mt-1 text-sm text-base-content/60">
                     By {getAuthorName(blog.author)}
                   </p>
+                  <p className="mt-1 text-xs text-base-content/50">
+                    {formatRelativeCreatedTime(blog.createdAt, now)}
+                  </p>
                 </div>
 
-                {isNewBlog(blog.createdAt) && (
+                {isWithinLastHours(blog.createdAt, 48, now) && (
                   <span className="badge badge-success shrink-0 px-3 py-3 text-xs font-semibold">
                     New
                   </span>

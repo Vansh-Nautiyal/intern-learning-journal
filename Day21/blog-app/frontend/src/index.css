@@ -121,23 +121,29 @@
   }
 
   .page-container {
-    width: min(100% - 2rem, 78rem);
+    width: min(100% - 3rem, 78rem);
     margin-inline: auto;
+  }
+
+  @media (min-width: 640px) {
+    .page-container {
+      width: min(100% - 2rem, 78rem);
+    }
   }
 }
 
-/* Default: dark theme is your app's default, so dark image shows, light image hidden */
+/* Default: light theme is the app's default, so light image shows first */
 .theme-img-light {
-  display: none;
+  display: block;
 }
 .theme-img-dark {
-  display: block;
+  display: none;
 }
 
-/* When html has data-theme="light", flip which image shows */
-:root[data-theme="light"] .theme-img-light {
-  display: block;
-}
-:root[data-theme="light"] .theme-img-dark {
+/* When html has data-theme="dark", flip which image shows */
+:root[data-theme="dark"] .theme-img-light {
   display: none;
+}
+:root[data-theme="dark"] .theme-img-dark {
+  display: block;
 }
