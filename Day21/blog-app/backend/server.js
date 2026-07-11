@@ -9,20 +9,23 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  process.env.FRONTEND_URL,
+].filter(Boolean);
+
 app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://your-blog.vercel.app"
-  ],
+  origin: allowedOrigins,
   credentials: true
 }));
 
 connectDB();
 
-app.use("/api/blogs",blogRoutes);
+app.use("/api/blogs",blogRoutes); 
 app.use("/api/auth",authRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT,()=>{
-    console.log("Server running on port 3000");
+    console.log(`Server running on port ${PORT}`);
 });
