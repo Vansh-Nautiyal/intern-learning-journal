@@ -92,13 +92,19 @@ function Dashboard() {
           My Blogs
         </h3>
 
+        {blogs.length === 0 && (
+          <p className="py-8 text-center text-base-content/70">
+            Start writing a new blog to see your creations
+          </p>
+        )}
+
         {error && (
           <div className="alert alert-error text-sm mb-6 py-2">
             <span>{error}</span>
           </div>
         )}
       </div>
-      <Blogs blogList={blogs} onDelete={deleteBlog} />
+      {blogs.length > 0 && <Blogs blogList={blogs} onDelete={deleteBlog} />}
     </div>
   );
 }
