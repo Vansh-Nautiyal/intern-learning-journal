@@ -4,6 +4,7 @@ import api from "../utils/api";
 import { IoMdAdd } from "react-icons/io";
 import Navbar from "../components/Navbar";
 import { useAuth } from "../context/useAuth";
+import Loader from "../components/Loader";
 
 function CreateBlog() {
   const { id } = useParams();

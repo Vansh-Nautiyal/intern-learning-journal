@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Stats from "../components/Stats";
 import { useAuth } from "../context/useAuth";
+import Loader from "../components/Loader";
 
 function Dashboard() {
   const navigate = useNavigate();

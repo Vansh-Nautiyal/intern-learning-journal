@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../utils/api";
 import Navbar from "../components/Navbar";
+import Loader from "../components/Loader";
 
 function Register() {
   const navigate = useNavigate();
