@@ -91,7 +91,7 @@ function Login() {
                 disabled={loading}
                 className="btn btn-primary mt-2 w-full rounded-xl shadow-lg shadow-primary/20 transition disabled:opacity-60"
               >
-                {loading ? "Logging in..." : "Log In"}
+                {loading ? <Loader size="sm" /> : "Log In"}
               </button>
             </form>
 

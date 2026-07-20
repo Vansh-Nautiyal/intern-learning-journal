@@ -147,7 +147,7 @@ function Register() {
                 disabled={loading}
                 className="btn btn-primary mt-2 w-full rounded-xl shadow-lg shadow-primary/20 transition disabled:opacity-60"
               >
-                {loading ? "Creating account..." : "Create Account"}
+                {loading ? <Loader size="sm" /> : "Create Account"}
               </button>
             </form>
 

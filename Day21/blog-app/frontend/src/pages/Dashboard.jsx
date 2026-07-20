@@ -13,23 +13,21 @@ function Dashboard() {
   const [blogs, setBlogs] = useState([]);
   const [error, setError] = useState("");
   const { user, logout } = useAuth();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchBlogs = async () => {
-      try {
-        const res = await api.get("/api/blogs/my");
-        setBlogs(res.data);
-      } catch (error) {
-        setError(
-          error.response?.data?.message ||
-            error.message ||
-            "Could not load blogs.",
-        );
-      }
-    };
-
-    fetchBlogs();
-  }, []);
+  const fetchBlogs = async () => {
+    try {
+      const res = await api.get("/api/blogs/my");
+      setBlogs(res.data);
+    } catch (error) {
+      setError(error.response?.data?.message || error.message || "Could not load blogs.");
+    } finally {
+      setLoading(false);
+    }
+  };
+  fetchBlogs();
+}, []);
 
   const deleteBlog = async (id) => {
     try {
@@ -104,7 +102,7 @@ function Dashboard() {
           </div>
         )}
       </div>
-      {blogs.length > 0 && <Blogs blogList={blogs} onDelete={deleteBlog} />}
+      {loading ? <Loader fullScreen /> : <Blogs blogList={blogs} onDelete={deleteBlog} />}
     </div>
   );
 }

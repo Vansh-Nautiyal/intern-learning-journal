@@ -202,9 +202,7 @@ function CreateBlog() {
                 className="btn btn-primary w-full rounded-xl shadow-lg shadow-primary/20 disabled:opacity-60"
               >
                 {loading
-                  ? id
-                    ? "Updating..."
-                    : "Publishing..."
+                  ? <Loader size="sm" />
                   : id
                     ? "Update Blog"
                     : "Publish Blog"}

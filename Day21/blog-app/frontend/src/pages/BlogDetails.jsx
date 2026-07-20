@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import api from "../utils/api";
 import Navbar from "../components/Navbar";
 import { useAuth } from "../context/useAuth";
+import Loader from "../components/Loader";
 
 function BlogDetails() {
   const { id } = useParams();
@@ -64,9 +65,7 @@ function BlogDetails() {
     return (
       <div className="app-shell">
         <Navbar />
-        <div className="flex min-h-[calc(100vh-80px)] items-center justify-center">
-          <span className="loading loading-spinner loading-lg text-primary" />
-        </div>
+        <Loader fullScreen />
       </div>
     );
   }
