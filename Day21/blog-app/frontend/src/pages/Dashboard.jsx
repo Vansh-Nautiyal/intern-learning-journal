@@ -17,18 +17,18 @@ function Dashboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-  const fetchBlogs = async () => {
-    try {
-      const res = await api.get("/api/blogs/my");
-      setBlogs(res.data);
-    } catch (error) {
-      setError(error.response?.data?.message || error.message || "Could not load blogs.");
-    } finally {
-      setLoading(false);
-    }
-  };
-  fetchBlogs();
-}, []);
+    const fetchBlogs = async () => {
+      try {
+        const res = await api.get("/api/blogs/my");
+        setBlogs(res.data);
+      } catch (error) {
+        setError(error.response?.data?.message || error.message || "Could not load blogs.");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchBlogs();
+  }, []);
 
   const deleteBlog = async (id) => {
     try {
@@ -91,7 +91,7 @@ function Dashboard() {
           My Blogs
         </h3>
 
-        {blogs.length === 0 && (
+        {!loading && blogs.length === 0 && (
           <p className="py-8 text-center text-base-content/70">
             Start writing a new blog to see your creations
           </p>
@@ -103,7 +103,12 @@ function Dashboard() {
           </div>
         )}
       </div>
-      {loading ? <Loader fullScreen /> : <Blogs blogList={blogs} onDelete={deleteBlog} />}
+
+      {loading ? (
+        <Loader fullScreen />
+      ) : (
+        blogs.length > 0 && <Blogs blogList={blogs} onDelete={deleteBlog} />
+      )}
     </div>
   );
 }
