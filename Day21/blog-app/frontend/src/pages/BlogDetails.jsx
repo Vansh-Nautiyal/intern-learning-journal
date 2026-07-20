@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import axios from "axios";
+import api from "../utils/api";
 import Navbar from "../components/Navbar";
 import { useAuth } from "../context/useAuth";
 
 function BlogDetails() {
   const { id } = useParams();
-  const { user, token } = useAuth();
+  const { user } = useAuth();
   const [blog, setBlog] = useState(null);
   const [error, setError] = useState("");
 
@@ -18,14 +18,7 @@ function BlogDetails() {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const res = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/blogs/${id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          },
-        );
+        const res = await api.get(`/api/blogs/${id}`);
         setBlog(res.data);
       } catch (error) {
         setError(
@@ -37,7 +30,7 @@ function BlogDetails() {
     };
 
     fetchBlog();
-  }, [id, token]);
+  }, [id]);
 
   const formatDate = (timestamp) => {
     if (!timestamp) return "Unknown date";

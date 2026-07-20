@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+import api from "../utils/api";
 import { IoMdAdd } from "react-icons/io";
 import Navbar from "../components/Navbar";
 import { useAuth } from "../context/useAuth";
@@ -8,7 +8,6 @@ import { useAuth } from "../context/useAuth";
 function CreateBlog() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { token } = useAuth();
 
   const [blog, setBlog] = useState({
     title: "",
@@ -24,14 +23,7 @@ function CreateBlog() {
     if (id) {
       const fetchBlog = async () => {
         try {
-          const response = await axios.get(
-            `${import.meta.env.VITE_API_URL}/api/blogs/${id}`,
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            },
-          );
+          const response = await api.get(`api/blogs/${id}`)
 
           setBlog(response.data);
         } catch (error) {
@@ -45,7 +37,7 @@ function CreateBlog() {
 
       fetchBlog();
     }
-  }, [id, token]);
+  }, [id]);
 
   const handleChange = (e) => {
     setBlog({
@@ -60,18 +52,12 @@ function CreateBlog() {
     setLoading(true);
 
     try {
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-
       if (id) {
         // Edit existing blog
-        await axios.put(`${import.meta.env.VITE_API_URL}/api/blogs/${id}`, blog, config);
+        await api.put('/api/blogs/${id}',blog)
       } else {
         // Create new blog
-        await axios.post(`${import.meta.env.VITE_API_URL}/api/blogs`, blog, config);
+        await api.post("/api/blogs", blog);
       }
 
       navigate("/dashboard");

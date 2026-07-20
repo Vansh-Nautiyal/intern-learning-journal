@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../utils/api";
 import Navbar from "../components/Navbar";
 import { useAuth } from "../context/useAuth";
 
@@ -21,12 +21,9 @@ function Login() {
     setLoading(true);
 
     try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/auth/login`,
-        form,
-      );
-
-      login(response.data.user, response.data.token);
+      const response = await api.post("/api/auth/login",form)
+      login(response.data.user);
+      
       navigate("/dashboard");
     } catch (err) {
       setError(

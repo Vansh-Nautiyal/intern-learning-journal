@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../utils/api";
 import Navbar from "../components/Navbar";
 
 function Register() {
@@ -35,11 +35,11 @@ function Register() {
     setLoading(true);
 
     try {
-      await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/register`, {
-        username: form.username,
-        email: form.email,
-        password: form.password,
-      });
+      await api.post("/api/auth/register", {
+         username: form.username,
+         email: form.email,
+         password: form.password,
+       });
 
       // User must log in to receive a JWT
       navigate("/login");

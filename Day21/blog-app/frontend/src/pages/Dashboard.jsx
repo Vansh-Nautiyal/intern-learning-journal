@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../utils/api";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { IoMdAdd } from "react-icons/io";
 import Blogs from "../components/Blogs";
@@ -12,16 +12,12 @@ function Dashboard() {
   const navigate = useNavigate();
   const [blogs, setBlogs] = useState([]);
   const [error, setError] = useState("");
-  const { user, token, logout } = useAuth();
+  const { user, logout } = useAuth();
 
   useEffect(() => {
-    if (!token) return;
-
     const fetchBlogs = async () => {
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/blogs/my`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const res = await api.get("/api/blogs/my");
         setBlogs(res.data);
       } catch (error) {
         setError(
@@ -33,15 +29,11 @@ function Dashboard() {
     };
 
     fetchBlogs();
-  }, [token]);
+  }, []);
 
   const deleteBlog = async (id) => {
     try {
-      await axios.delete(`${import.meta.env.VITE_API_URL}/api/blogs/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await api.delete(`/api/blogs/${id}`);
 
       setBlogs((currentBlogs) =>
         currentBlogs.filter((blog) => blog._id !== id),
@@ -55,9 +47,11 @@ function Dashboard() {
     }
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     navigate("/", { replace: true });
-    setTimeout(logout, 1);
+    setTimeout(() => {
+      logout();
+    }, 1);
   };
 
   return (

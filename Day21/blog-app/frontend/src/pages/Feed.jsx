@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../utils/api";
 import Blogs from "../components/Blogs";
 import Navbar from "../components/Navbar";
 import { FiSearch } from "react-icons/fi";
@@ -25,11 +25,8 @@ function Feed() {
           params.append("search", debouncedSearch);
         }
 
-        const url =
-          params.toString() === ""
-            ? `${import.meta.env.VITE_API_URL}/api/blogs`
-            : `${import.meta.env.VITE_API_URL}/api/blogs?${params.toString()}`;
-        const res = await axios.get(url);
+        const url = params.toString() === "" ? "/api/blogs" : `/api/blogs?${params.toString()}`;
+        const res = await api.get(url);
 
         setBlogs(res.data);
         if (selectedTag === "all" && debouncedSearch.trim() === "") {

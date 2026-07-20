@@ -1,58 +1,28 @@
-import {
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import AuthContext from "./authContext";
-
-const getStoredUser = () => {
-  try {
-    return JSON.parse(localStorage.getItem("user") || "null");
-  } catch {
-    return null;
-  }
-};
+import api from "../utils/api";
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(getStoredUser);
-  const [token, setToken] = useState(() => localStorage.getItem("token"));
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const login = useCallback((loggedInUser, authToken) => {
-    setUser(loggedInUser);
-    setToken(authToken);
+  useEffect(() => {
+    api.get("/api/auth/me")
+      .then((res) => setUser(res.data.user))
+      .catch(() => setUser(null))
+      .finally(() => setLoading(false));
   }, []);
 
-  const logout = useCallback(() => {
+  const login = useCallback((loggedInUser) => setUser(loggedInUser), []);
+
+  const logout = useCallback(async () => {
+    await api.post("/api/auth/logout");
     setUser(null);
-    setToken(null);
   }, []);
-
-  useEffect(() => {
-    if (token) {
-      localStorage.setItem("token", token);
-    } else {
-      localStorage.removeItem("token");
-    }
-  }, [token]);
-
-  useEffect(() => {
-    if (user) {
-      localStorage.setItem("user", JSON.stringify(user));
-    } else {
-      localStorage.removeItem("user");
-    }
-  }, [user]);
 
   const value = useMemo(
-    () => ({
-      user,
-      token,
-      isAuthenticated: Boolean(token),
-      login,
-      logout,
-    }),
-    [user, token, login, logout],
+    () => ({ user, isAuthenticated: Boolean(user), loading, login, logout }),
+    [user, loading, login, logout],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
