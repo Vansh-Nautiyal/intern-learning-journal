@@ -24,7 +24,7 @@ function CreateBlog() {
     if (id) {
       const fetchBlog = async () => {
         try {
-          const response = await api.get(`api/blogs/${id}`)
+          const response = await api.get(`/api/blogs/${id}`)
 
           setBlog(response.data);
         } catch (error) {
@@ -55,7 +55,7 @@ function CreateBlog() {
     try {
       if (id) {
         // Edit existing blog
-        await api.put('/api/blogs/${id}',blog)
+        await api.put(`/api/blogs/${id}`,blog)
       } else {
         // Create new blog
         await api.post("/api/blogs", blog);
