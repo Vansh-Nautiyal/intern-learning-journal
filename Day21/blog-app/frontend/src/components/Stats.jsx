@@ -64,7 +64,9 @@ function Stats({ blogList }) {
           </svg>
         </div>
         <div className="stat-title text-violet-500 font-bold">Average Post Length</div>
-        <div className="stat-value text-base-content">{wordCount/blogList.length}</div>
+        <div className="stat-value text-base-content">
+          {blogList.length ? wordCount / blogList.length : 0}
+        </div>
         <div className="stat-desc">Average length of each blog post</div>
       </div>
     </div>
