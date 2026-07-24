@@ -1,0 +1,12 @@
+.navbar{
+  text-align: center;
+  border: 2px solid;
+  padding: 10px;
+}
+
+.content button {
+  margin: 10px;
+  font-size : 1.5rem;
+  padding-left: 20px;
+  padding-right: 20px;
+}
