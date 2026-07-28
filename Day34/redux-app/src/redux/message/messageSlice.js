@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
-    content : "Hello World",
+    content : "Hello User",
 };
 export const messageSlice = createSlice({
     name : 'message',
@@ -12,8 +12,11 @@ export const messageSlice = createSlice({
         greetingByName : (state,action) =>{
             state.content = `Good morning ${action.payload}`;
         },
+        reset : (state) =>{
+            state.content = "Hello User";
+        },
     },
 });
 
-export const {greeting, greetingByName} = messageSlice.actions;
+export const {greeting, greetingByName, reset} = messageSlice.actions;
 export default messageSlice.reducer;
