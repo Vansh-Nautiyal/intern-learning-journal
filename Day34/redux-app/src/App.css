@@ -1,12 +1,80 @@
-.navbar{
-  text-align: center;
-  border: 2px solid;
-  padding: 10px;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-.content button {
-  margin: 10px;
-  font-size : 1.5rem;
-  padding-left: 20px;
-  padding-right: 20px;
+.navbar {
+  text-align: center;
+  padding: 2% 4% 2% 4%;
+  margin-bottom: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.app-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+
+}
+.counter-div {
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 4%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+
+.counter-div p{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+
+.buttons-div {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons-div button {
+  padding: 8px 20px 8px 20px;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+.clear-button {
+  padding: 10px 20px 10px 20px;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+.message-box{
+  border-radius: 4%;
+  text-align: center;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  border: 2px solid black;
+}
+
+.message-box button{
+  width: 200px;
+  padding: 10px;
+  margin: 5px;
+}
+
+.message-box input{
+  padding: 10px;
 }

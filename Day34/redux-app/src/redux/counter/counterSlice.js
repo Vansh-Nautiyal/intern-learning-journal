@@ -22,11 +22,14 @@ export const counterSlice = createSlice({
     },
     half : (state)=>{
         state.value /= 2
-    }
+    },
+    clear : (state)=>{
+      state.value = 0
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount, double, half } = counterSlice.actions;
+export const { increment, decrement, incrementByAmount, double, half, clear } = counterSlice.actions;
 
 export default counterSlice.reducer;
